@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import LinkDropdown from "../Common/Dropdown/LinkDropdown";
 import { UserContainer, UserButton, UserIcon } from "./styles";
+import user from "../../images/logo-usuario.png";
 
 const User = () => {
     const [isOpen, setIsOpen] = useState();
@@ -11,7 +12,7 @@ const User = () => {
     return (
         <UserContainer>
             <UserButton onClick={handleDropdown}>
-                <UserIcon src="./user.png" alt="Ícone" />
+                <UserIcon src={user} alt="Ícone Usuário" />
                 Username
             </UserButton>
             <LinkDropdown 
@@ -21,6 +22,6 @@ const User = () => {
     );
 }
 
-// TODO: Change username and fix icon image
+// TODO: Change username  (Larissa)
 
 export default User;
