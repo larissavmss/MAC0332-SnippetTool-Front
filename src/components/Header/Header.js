@@ -1,5 +1,5 @@
 import User from "../User/User";
-import { HeaderContainer, IconMenu, LeftContainer, Logo, MenuButton, SearchBar } from "./styles"
+import { FlexButtons, HeaderContainer, IconMenu, LeftContainer, Logo, MenuButton, SearchBar, SignIn, SignUp } from "./styles"
 import menu from "../../images/menu.png"
 import logo from "../../images/logobranca.png"
 import { useState } from "react";
@@ -26,15 +26,16 @@ const Header = () => {
                     <SearchBar type="text" placeholder="Pesquisar"/>
                 </LeftContainer>
                 {userIsLogged? <User/> : 
-                <div>
-                    <Link to="/sign-in">Sign In</Link>
-                    <Link to="/sign-up">Sign Up</Link>
-                </div>
+                <FlexButtons>
+                    <Link to="/sign-in" style={{textDecoration: 'none'}}> <SignIn> Sign In </SignIn> </Link>
+                    <Link to="/sign-up" style={{textDecoration: 'none'}}> <SignUp> Sign Up </SignUp> </Link>
+                </FlexButtons>
                 }
             </HeaderContainer>
             {openMenu && (<Menu/>)}
         </div>
     )
 }
-// TODO: Colocar icone de pesquisa na barra e estilizar sign in e sign up (Cassio)
+// TODO: Colocar icone de pesquisa na barra (Cassio)
+
 export default Header;

@@ -46,3 +46,32 @@ background: none;
 border: none;
 cursor: pointer;
 `;
+
+export const SignIn = styled.div`
+padding: 10px;
+color: #ddd;
+transition: 0.25s;
+&:hover {
+    transition: 0.25s;
+    color: #999;
+}
+
+`;
+
+export const SignUp = styled.div`
+background-color: #ddd;
+padding: 10px;
+border-radius: 5px;
+color: ${grey};
+transition: 0.25s;
+&:hover {
+    transition: 0.25s;
+    background-color: #999;
+}
+`;
+
+export const FlexButtons = styled.div`
+display: flex;
+justify-content: space-between;
+width: 160px;
+`
