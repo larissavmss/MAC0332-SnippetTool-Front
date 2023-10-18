@@ -3,9 +3,11 @@ import {
   FlexButtons,
   HeaderContainer,
   IconMenu,
+  InsideSearchBar,
   LeftContainer,
   Logo,
   MenuButton,
+  RightContainer,
   SearchBar,
   SignIn,
   SignUp,
@@ -58,7 +60,7 @@ const Header = () => {
               alt="Search"
               onClick={handleSearch}
             />
-            <input
+            <InsideSearchBar
               type="text"
               placeholder="Pesquisar"
               value={searchText}
@@ -67,18 +69,20 @@ const Header = () => {
             />
           </SearchBar>
         </LeftContainer>
-        {userIsLogged ? (
-          <User />
-        ) : (
-          <FlexButtons>
-            <Link to="/sign-in" style={{ textDecoration: "none" }}>
-              <SignIn> Sign In </SignIn>
-            </Link>
-            <Link to="/sign-up" style={{ textDecoration: "none" }}>
-              <SignUp> Sign Up </SignUp>
-            </Link>
-          </FlexButtons>
-        )}
+        <RightContainer>
+          {userIsLogged ? (
+            <User />
+            ) : (
+              <FlexButtons>
+              <Link to="/sign-in" style={{ textDecoration: "none" }}>
+                <SignIn> Sign In </SignIn>
+              </Link>
+              <Link to="/sign-up" style={{ textDecoration: "none" }}>
+                <SignUp> Sign Up </SignUp>
+              </Link>
+            </FlexButtons>
+          )}
+        </RightContainer>
       </HeaderContainer>
       {openMenu && <Menu />}
     </div>
