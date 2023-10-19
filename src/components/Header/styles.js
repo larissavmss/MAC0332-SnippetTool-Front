@@ -8,6 +8,10 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space between;
   align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  height: 40px;
 `;
 
 export const LeftContainer = styled.div`
@@ -21,13 +25,14 @@ export const LeftContainer = styled.div`
   justify-content: right;
   display: flex;
   width: 10%;
-  padding-right: 10px;
-`
+  padding-right: 30px;
+`;
 
 export const IconMenu = styled.img`
   cursor: pointer;
   margin-left: 20px;
   height: 25px;
+  outline: none;
 `;
 
 export const Logo = styled.img`

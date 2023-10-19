@@ -47,7 +47,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <div style={{ paddingTop: "60px" }}>
       <HeaderContainer>
         <LeftContainer>
           <MenuButton onClick={toggleMenu}>
