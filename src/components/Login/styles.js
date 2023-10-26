@@ -5,11 +5,21 @@ export const LoginContainer = styled.div`
     background-color: ${grey};
     color: #fff;
     display: flex;
+    flex-direction: row;
+    padding: 30px;
+    gap: 50px
+`
+export const LeftContainer = styled.div`
+    background-color: blue;
+    color: #fff;
+    display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 200px;
-    width: 600px;
-    padding-bottom: 30px;
+`
+export const RightContainer = styled.div`
+    background-color: black;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
 `
 export const Header = styled.div`
     display: flex;
