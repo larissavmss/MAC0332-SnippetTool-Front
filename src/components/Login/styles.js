@@ -2,15 +2,19 @@ import styled from "styled-components";
 import { grey } from "../../utils/constants/constants";
 
 export const LoginContainer = styled.div`
-    background-color: ${grey}
-    color: #fff
-    padding: 10px;
+    background-color: ${grey};
+    color: #fff;
     display: flex;
-    justify-content: space between;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    padding-bottom: 30px;
+`
+export const Header = styled.div`
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0px;
-    height: 40px;
-    border-bottom: 1px solid #666;
+    gap: 9px;
+    
+
 `
