@@ -18,7 +18,7 @@ import {
 import logo from "../../images/logobranca.png";
 import email_icon from "../../images/email_icon.png";
 import password_icon from "../../images/password_icon.png";
-import usuario_icon from "../../images/logo-usuario.png";
+import usuario_icon from "../../images/black_user_icon.png";
 
 const Login = () => {
 
@@ -55,6 +55,7 @@ const Login = () => {
                         <UserIcon 
                             src={usuario_icon} 
                             alt="User Icon"
+                            style={{width: "30px"}}
                         />
                         <InsideInput 
                             type="text"

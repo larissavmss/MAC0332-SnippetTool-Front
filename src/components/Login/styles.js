@@ -8,7 +8,8 @@ export const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 30px;
-    
+    border-radius: 10%;
+    width: 600px;
 `
 export const Header = styled.div`
     display: flex;
