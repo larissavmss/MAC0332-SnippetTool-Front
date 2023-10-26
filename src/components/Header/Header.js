@@ -20,8 +20,7 @@ import { useState } from "react";
 import Menu from "../Menu/Menu";
 import { Link } from "react-router-dom";
 
-const Header = () => {
-  const [openMenu, setOpenMenu] = useState(false);
+const Header = ({ openMenu, setOpenMenu }) => {
   const [searchText, setSearchText] = useState("");
 
   const userIsLogged = false;

@@ -26,7 +26,7 @@
     box-sizing: border-box;         /* Opera/IE 8+ */
     
     padding: 0;
-    width: 30%;
+    width: 29%;
     height: 350px;
     border-radius: 10px;
     border: 1px solid #666;
@@ -47,7 +47,6 @@
     border-bottom: 1px solid #666;
 
     position: relative;
-    display: inline-block;
     word-wrap: break-word;
     overflow: hidden;
     height: 12em; /* (Number of lines you want visible) * (line-height) */
@@ -84,4 +83,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
 
+}
+
+.content{
+    transition: margin-left 0.3s;
+}
+
+.content-menu-aberto{
+    margin-left: 120px;
 }
