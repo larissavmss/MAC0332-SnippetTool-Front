@@ -1,0 +1,26 @@
+.backShadow{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: #555555ac;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+}
+
+.popupSnippet{
+    position: fixed;
+    top: 10vh;
+    left: 15%;
+    border-radius: 20px;
+    height: 80vh;
+    width: 70%;
+    background-color: #1b1c19;
+    border: 1px solid #1b1c19;
+    box-shadow: 0 0 50px #1b1c19;;
+    display: flex;
+    padding: 20px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}

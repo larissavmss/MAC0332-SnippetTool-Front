@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import { getUserSnippets } from "../../services/snippet";
 import './Main.css'
+import SnippetPopup from "../../components/SnippetPopup/SnippetPopup";
 
 const Main = () => {
     const [snippets, setSnippets] = useState([]);
     const [openMenu, setOpenMenu] = useState(false);
-    const [openPopup, setOpenPopup] = useState(false);
-    const [selectedSnippetId, idSelectedSnippetId] = useState(0);
+    const [snippetPopup, setSnippetPopup] = useState(false);
+    const [selectedSnippetId, setSelectedSnippetId] = useState(0);
 
     useEffect(()=>{
         const fetchSnippetsData = async () =>   {
@@ -16,6 +17,11 @@ const Main = () => {
         }
         fetchSnippetsData();
     }, [])
+
+    const handleSnippetSelect = (snippetId) => {
+        setSnippetPopup(true);
+        setSelectedSnippetId(snippetId)
+    }
 
     return (
         <div className="mainPage">
@@ -29,7 +35,7 @@ const Main = () => {
                 <div className="snippetContainer">
 
                 {snippets.map((snippet)=> {
-                    return ( <div className="snippet" key={snippet.id}>
+                    return ( <button onClick={() => handleSnippetSelect(snippet.id)} className="snippet" key={snippet.id}>
                         <p className="snippetContent">
                         {snippet.content}
                         </p>
@@ -39,9 +45,9 @@ const Main = () => {
                                 return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
                             })}
                         </div>
-                    </div> )
+                    </button> )
                 })}
-
+                {snippetPopup && <SnippetPopup snippetId={selectedSnippetId} setPopup={setSnippetPopup}/>}
                 </div>
             </div>
         </div>

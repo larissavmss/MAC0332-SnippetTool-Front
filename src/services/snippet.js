@@ -13,3 +13,40 @@ export const getUserSnippets = async (userId) => {
         return snippets;
     }
 }
+
+export const getSnippetById = async (snippetId) => {
+    let snippet = null;
+    try{
+        const response = await fetch("http://localhost:8080/snippet/getById/" + snippetId);
+        if(response.ok){
+            snippet = await response.json();
+        } else {
+            throw new Error("Falha ao busca snippet com id "+ snippetId);
+        } 
+    } catch(error){
+        console.log("Erro:" + error);
+    } finally {
+        return snippet;
+    }
+}
+
+export const updateSnippet = async (snippet) => {
+    let snippetUpdated = null;
+    try {
+        const requestOptions = {
+            method: 'UPDATE',
+            header: { 'Content-Type' : 'application/json'},
+            body: JSON.stringify(snippet)
+        }
+        const response = await fetch("http://localhost:8080/snippet", requestOptions);
+        if (response.ok){
+            snippetUpdated = await response.json();
+        } else {
+            throw new Error("Erro ao editar snippet");
+        }
+    } catch (error) {
+        console.log("Erro: " + error);
+    } finally {
+        return snippetUpdated;
+    }
+}
