@@ -12,6 +12,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
   top: 0px;
   height: 40px;
+  border-bottom: 1px solid #666;
 `;
 
 export const LeftContainer = styled.div`

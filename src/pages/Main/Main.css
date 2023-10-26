@@ -1,0 +1,87 @@
+.mainPage{
+    min-height: 100vh;
+    background-color: #1b1c19;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.inputCreator{
+    height: 50px;
+    width: 40%;
+    margin: 40px auto;
+    text-align: left;
+    padding-left: 20px;
+    background-color: transparent;
+    border: none;
+    border: 1px solid #666;
+    border-radius: 10px;
+    color: white;
+    font-size: 1em;
+}
+
+.snippet{
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    
+    padding: 0;
+    width: 30%;
+    height: 350px;
+    border-radius: 10px;
+    border: 1px solid #666;
+    margin: 20px;
+    text-align: left;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.snippet:hover{
+    box-shadow: 0 0 30px #444;
+    transition: 0.25s;
+}
+
+.snippetContent{
+    margin-top: 0;
+    padding: 20px;
+    border-bottom: 1px solid #666;
+
+    position: relative;
+    display: inline-block;
+    word-wrap: break-word;
+    overflow: hidden;
+    height: 12em; /* (Number of lines you want visible) * (line-height) */
+    line-height: 1.2em;
+    text-align:justify;
+  
+}
+
+.snippetTitle{
+    padding-left: 20px;
+    margin: 5px 0 22px 0;
+    font-size: 1.2em;
+}
+
+.snippetTag{
+    border: 1px solid #ef273e;
+    border-radius: 7px;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 0.8em;
+    color: white;
+}
+
+.tagContainer{
+    display: flex;
+    justify-content: right;
+    margin: 5px;
+}
+
+.snippetContainer{
+    width: 80%;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
