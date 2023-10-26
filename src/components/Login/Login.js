@@ -1,7 +1,19 @@
-
+import { useState } from "react";
 import {
     LoginContainer,
-} from "./styles"
+    SubmitContainer,
+    Header,
+    Inputs,
+    Input,
+    Submit,
+    UserIcon,
+    EmailIcon,
+    PasswordIcon,
+    InsideInput,
+    Text,
+    Underline,
+    ForgotPassaword
+} from "./styles";
 
 import logo from "../../images/logobranca.png";
 import email_icon from "../../images/email_icon.png";
@@ -9,6 +21,13 @@ import password_icon from "../../images/password_icon.png";
 import usuario_icon from "../../images/logo-usuario.png";
 
 const Login = () => {
+
+    const [action, setAction] = useState("Login")
+
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+    const [userPassword, setUserPassword] = useState("");
+
     return (
         <div className='container' style={{ paddingTop: "60px" }}>
             <LoginContainer>
@@ -17,8 +36,8 @@ const Login = () => {
                     Tá passada? Então vem com a gente!!!
                 </p>
                 <Header>
-                    <div className="text"> Sign Up</div>
-                    <div className="underline"></div>
+                    <Text> Sign Up</Text>
+                    <Underline></Underline>
                 </Header>
                 <Inputs>
                     <Input>
@@ -55,11 +74,11 @@ const Login = () => {
                         />
                     </Input>
                 </Inputs>
-                <div className="forgot-password">Lost Password? <span>Click here</span></div>
-                <div className="submit-container">
-                    <div className="submit">Sign Up</div>
-                    <div className="submit">Login</div>
-                </div>
+                <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
+                <SubmitContainer>
+                    <Submit>Sign Up</Submit>
+                    <Submit>Login</Submit>
+                </SubmitContainer>
                 Teste
             </LoginContainer>
         </div>
