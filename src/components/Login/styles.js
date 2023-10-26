@@ -5,28 +5,16 @@ export const LoginContainer = styled.div`
     background-color: ${grey};
     color: #fff;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     padding: 30px;
-    gap: 50px
-`
-export const LeftContainer = styled.div`
-    background-color: blue;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-`
-export const RightContainer = styled.div`
-    background-color: black;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
+    
 `
 export const Header = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 9px;
-    width: 100%;
     margin-top: 30px;
 `
 export const Text = styled.div`
@@ -74,7 +62,6 @@ export const InsideInput = styled.input`
     font-size: 19px;
 `
 export const ForgotPassaword = styled.div`
-    padding-left: 62px;
     margin-top:27px;
     color: #797979;
     font-size: 18px;
@@ -91,7 +78,7 @@ export const Submit = styled.div`
     width: 220px;
     height: 59px;
     color: #fff;
-    background: ${grey};
+    background: red;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
