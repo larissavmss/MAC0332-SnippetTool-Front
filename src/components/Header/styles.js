@@ -13,6 +13,7 @@ export const HeaderContainer = styled.div`
   top: 0px;
   height: 40px;
   border-bottom: 1px solid #666;
+  z-index: 1000;
 `;
 
 export const LeftContainer = styled.div`
