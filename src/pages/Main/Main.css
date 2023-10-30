@@ -30,7 +30,7 @@
     height: 350px;
     border-radius: 10px;
     border: 1px solid #666;
-    margin: 20px;
+    margin: 1.5%;
     text-align: left;
     transition: 0.25s;
     cursor: pointer;
@@ -45,9 +45,7 @@
     margin-top: 0;
     padding: 20px;
     border-bottom: 1px solid #666;
-
     position: relative;
-    display: inline-block;
     word-wrap: break-word;
     overflow: hidden;
     height: 12em; /* (Number of lines you want visible) * (line-height) */
@@ -78,10 +76,18 @@
 }
 
 .snippetContainer{
-    width: 80%;
+    width: 90%;
     display: flex;
     margin: auto;
     flex-wrap: wrap;
     justify-content: space-between;
     padding-bottom: 100px;
+}
+
+.content{
+    transition: margin-left 0.3s;
+}
+
+.content-menu-aberto{
+    margin-left: 15%;
 }

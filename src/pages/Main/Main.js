@@ -1,65 +1,54 @@
+import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
+import { getUserSnippets } from "../../services/snippet";
 import './Main.css'
+import SnippetPopup from "../../components/SnippetPopup/SnippetPopup";
 
 const Main = () => {
+    const [snippets, setSnippets] = useState([]);
+    const [openMenu, setOpenMenu] = useState(false);
+    const [snippetPopup, setSnippetPopup] = useState(false);
+    const [selectedSnippetId, setSelectedSnippetId] = useState(0);
+
+    useEffect(()=>{
+        const fetchSnippetsData = async () =>   {
+            const response = await getUserSnippets(1); //TODO: lembrar de trocar 1 para o id do user
+            setSnippets(response);
+        }
+        fetchSnippetsData();
+    }, [])
+
+    const handleSnippetSelect = (snippetId) => {
+        setSnippetPopup(true);
+        setSelectedSnippetId(snippetId)
+    }
+
     return (
         <div className="mainPage">
-            <Header/>
-            
+            <Header 
+                openMenu={openMenu} 
+                setOpenMenu={setOpenMenu}
+            />
+            <div className={`content ${openMenu ? 'content-menu-aberto' : ''}`}>
+                <button className="inputCreator">Criar novo snippet</button>
 
-            <button className="inputCreator">Criar novo snippet</button>
+                <div className="snippetContainer">
 
-
-            <div className="snippetContainer">
-
-
-                <div className="snippet">
-                    <p className="snippetContent">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus arcu dolor, id tempus nisl varius sit amet. Nulla vitae interdum erat. Fusce vitae interdum sapien, nec pharetra urna. Ut non augue sit amet tellus efficitur suscipit. Maecenas sed scelerisque ante, cursus accumsan turpis. Duis lobortis tortor sed mi mollis sollicitudin. Donec eu quam est. Aenean mollis congue odio, vitae porta turpis finibus sed. Curabitur ullamcorper dapibus fermentum. Proin at mi at erat euismod convallis sed quis magna. Ut eu elit dui. Sed consequat pretium molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec elementum diam sapien, ut sagittis quam pretium id.
-                    </p>
-                    <h2 className="snippetTitle">Title of the first snippet</h2>
-                    <div className="tagContainer">
-                        <div className="snippetTag">Tag 1</div>
-                        <div className="snippetTag">Tag 2</div>
-                        <div className="snippetTag">Tag 3</div>
-                        <div className="snippetTag">Tag 4</div>
-                    </div>
+                {snippets.map((snippet)=> {
+                    return ( <button onClick={() => handleSnippetSelect(snippet.id)} className="snippet" key={snippet.id}>
+                        <p className="snippetContent">
+                        {snippet.content}
+                        </p>
+                        <h2 className="snippetTitle">{snippet.name}</h2>
+                        <div className="tagContainer">
+                            {snippet.tags.map((tag)=>{
+                                return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
+                            })}
+                        </div>
+                    </button> )
+                })}
+                {snippetPopup && <SnippetPopup snippetId={selectedSnippetId} setPopup={setSnippetPopup}/>}
                 </div>
-
-
-                <div className="snippet">
-                    <p className="snippetContent">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus arcu dolor, id tempus nisl varius sit amet. Nulla vitae interdum erat. Fusce vitae interdum sapien, nec pharetra urna. Ut non augue sit amet tellus efficitur suscipit. Maecenas sed scelerisque ante, cursus accumsan turpis. 
-                    </p>
-                    <h2 className="snippetTitle">Title of the second snippet</h2>
-                    <div className="tagContainer">
-                        <div className="snippetTag">Tag 1</div>
-                        <div className="snippetTag">Tag 2</div>
-                    </div>
-                </div>
-
-                <div className="snippet">
-                    <p className="snippetContent">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus arcu turpis. 
-                    </p>
-                    <h2 className="snippetTitle">Title</h2>
-                    <div className="tagContainer">
-                        <div className="snippetTag">Tag 1</div>
-                    </div>
-                </div>
-    
-                <div className="snippet">
-                    <p className="snippetContent">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus arcu turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus arcu turpis. 
-                    </p>
-                    <h2 className="snippetTitle">Title</h2>
-                    <div className="tagContainer">
-                        <div className="snippetTag">Tag 1</div>
-                        <div className="snippetTag">Tag 2</div>
-                        <div className="snippetTag">Tag 3</div>
-                    </div>
-                </div>
-
             </div>
         </div>
     );
