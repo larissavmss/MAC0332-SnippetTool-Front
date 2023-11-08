@@ -39,10 +39,19 @@ const Login = () => {
         setUserPassword(event.target.value);
     }
     const handleClickSignUp = (event) =>{
-        setAction("SignUp")
+        if (action === "Login") {
+            setAction("SignUp");
+        } else {
+            // Check if account already exists and, if not, create new account
+            // Then, tell the home page to change the screen
+        }
     }
     const handleClickLogin = (event) =>{
-        setAction("Login")
+        if (action === "SignUp") {
+            setAction("Login");
+        } else {
+            
+        }
     }
 
     return (
