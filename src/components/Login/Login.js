@@ -5,7 +5,8 @@ import {
     Header,
     Inputs,
     Input,
-    Submit,
+    SubmitSelected,
+    SubmitUnselected,
     UserIcon,
     EmailIcon,
     PasswordIcon,
@@ -43,6 +44,7 @@ const Login = () => {
     const handleClickLogin = (event) =>{
         setAction("Login")
     }
+
     return (
         <div className='container'>
             <LoginContainer>
@@ -51,19 +53,21 @@ const Login = () => {
                     <Underline></Underline>
                 </Header>
                 <Inputs>
-                    <Input>
-                        <UserIcon 
-                            src={usuario_icon} 
-                            alt="User Icon"
-                            style={{width: "30px"}}
-                        />
-                        <InsideInput 
-                            type="text"
-                            placeholder="Usuário"
-                            value={userName}
-                            onChange={handleUserNameChange}
-                        />
-                    </Input>
+                    {action === 'SignUp' && (
+                        <Input>
+                            <UserIcon 
+                                src={usuario_icon} 
+                                alt="User Icon"
+                                style={{width: "30px"}}
+                            />
+                            <InsideInput 
+                                type="text"
+                                placeholder="Usuário"
+                                value={userName}
+                                onChange={handleUserNameChange}
+                            />
+                        </Input>
+                    )}
                     <Input>
                         <EmailIcon 
                             src={email_icon} 
@@ -93,12 +97,26 @@ const Login = () => {
                 </Inputs>
                 <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
                 <SubmitContainer>
-                    <Submit onClick={handleClickSignUp}>
-                        Sign Up
-                    </Submit>
-                    <Submit onClick={handleClickLogin}>
-                        Login
-                    </Submit>
+                    {action === 'SignUp' && (
+                        <SubmitSelected onClick={handleClickSignUp}>
+                            Sign Up
+                        </SubmitSelected>
+                    )}
+                    {action === 'SignUp' && (
+                        <SubmitUnselected onClick={handleClickLogin}>
+                            Login
+                        </SubmitUnselected>
+                    )}
+                    {action === 'Login' && (
+                        <SubmitUnselected onClick={handleClickSignUp}>
+                            Sign Up
+                        </SubmitUnselected>
+                    )}
+                    {action === 'Login' && (
+                        <SubmitSelected onClick={handleClickLogin}>
+                            Login
+                        </SubmitSelected>
+                    )}
                 </SubmitContainer>  
             </LoginContainer>
         </div>

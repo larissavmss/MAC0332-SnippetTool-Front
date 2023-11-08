@@ -8,14 +8,14 @@ export const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 30px;
-    border-radius: 10%;
-    width: 600px;
+    border-radius: 5%;
+    width: 25%;
 `
 export const Header = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 9px;
+    gap: 10%;
     margin-top: 30px;
 `
 export const Text = styled.div`
@@ -39,7 +39,7 @@ export const Input = styled.div`
     display:flex;
     align-items: center;
     margin: auto;
-    width: 480px;
+    width: 100%;
     height: 80px;
     background: #eaeaea;
     border-radius: 6px;
@@ -55,7 +55,7 @@ export const PasswordIcon = styled.img`
 `
 export const InsideInput = styled.input`
     height: 50px;
-    width: 400px;
+    width: 200%;
     background: transparent;
     border: none;
     outline: none;
@@ -69,17 +69,31 @@ export const ForgotPassaword = styled.div`
 `
 export const SubmitContainer = styled.div`
     display: flex;
+    width: 90%;
     gap: 30px;
     margin: 60px auto;
 `
-export const Submit = styled.div`
+export const SubmitSelected = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 220px;
+    width: 70%;
     height: 59px;
     color: #fff;
     background: red;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+`
+export const SubmitUnselected = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 59px;
+    color: #fff;
+    background: grey;
     border-radius: 50px;
     font-size: 19px;
     font-weight: 700;
