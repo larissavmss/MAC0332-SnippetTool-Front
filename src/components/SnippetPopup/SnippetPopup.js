@@ -3,7 +3,7 @@ import "./SnippetPopup.css";
 import { getSnippetById } from "../../services/snippet";
 import { createNewTag } from "../../services/tag";
 import closeIcon from "../../images/close.png";
-
+import plusIcon from "../../images/plus.png"
 
 const SnippetPopup = ({snippetId, setPopup}) => {
     const [snippetData, setSnippetData] = useState(null);
@@ -57,6 +57,7 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                                 {snippetData.tags.map((tag)=>{
                                     return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
                                 })}
+                                <div className="additionButton"><img src={plusIcon}/></div>
                             </div>
                         </div>
                         <div className="columnFlexPopUP">
