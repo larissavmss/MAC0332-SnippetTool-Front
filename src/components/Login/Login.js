@@ -5,7 +5,8 @@ import {
     Header,
     Inputs,
     Input,
-    Submit,
+    SubmitSelected,
+    SubmitUnselected,
     UserIcon,
     EmailIcon,
     PasswordIcon,
@@ -38,11 +39,21 @@ const Login = () => {
         setUserPassword(event.target.value);
     }
     const handleClickSignUp = (event) =>{
-        setAction("SignUp")
+        if (action === "Login") {
+            setAction("SignUp");
+        } else {
+            // Check if account already exists and, if not, create new account
+            // Then, tell the home page to change the screen
+        }
     }
     const handleClickLogin = (event) =>{
-        setAction("Login")
+        if (action === "SignUp") {
+            setAction("Login");
+        } else {
+            
+        }
     }
+
     return (
         <div className='container'>
             <LoginContainer>
@@ -51,19 +62,21 @@ const Login = () => {
                     <Underline></Underline>
                 </Header>
                 <Inputs>
-                    <Input>
-                        <UserIcon 
-                            src={usuario_icon} 
-                            alt="User Icon"
-                            style={{width: "30px"}}
-                        />
-                        <InsideInput 
-                            type="text"
-                            placeholder="Usuário"
-                            value={userName}
-                            onChange={handleUserNameChange}
-                        />
-                    </Input>
+                    {action === 'SignUp' && (
+                        <Input>
+                            <UserIcon 
+                                src={usuario_icon} 
+                                alt="User Icon"
+                                style={{width: "30px"}}
+                            />
+                            <InsideInput 
+                                type="text"
+                                placeholder="Usuário"
+                                value={userName}
+                                onChange={handleUserNameChange}
+                            />
+                        </Input>
+                    )}
                     <Input>
                         <EmailIcon 
                             src={email_icon} 
@@ -92,14 +105,27 @@ const Login = () => {
                     </Input>
                 </Inputs>
                 <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
-                <SubmitContainer>
-                    <Submit onClick={handleClickSignUp}>
-                        Sign Up
-                    </Submit>
-                    <Submit onClick={handleClickLogin}>
-                        Login
-                    </Submit>
-                </SubmitContainer>  
+                
+                {action === 'SignUp' && (
+                    <SubmitContainer>
+                        <SubmitSelected onClick={handleClickSignUp}>
+                            Sign Up
+                        </SubmitSelected>
+                        <SubmitUnselected onClick={handleClickLogin}>
+                            Login
+                        </SubmitUnselected>
+                    </SubmitContainer>
+                )}
+                {action === 'Login' && (
+                    <SubmitContainer>
+                        <SubmitUnselected onClick={handleClickSignUp}>
+                            Sign Up
+                        </SubmitUnselected>
+                        <SubmitSelected onClick={handleClickLogin}>
+                            Login
+                        </SubmitSelected>
+                    </SubmitContainer>
+                )}
             </LoginContainer>
         </div>
     )

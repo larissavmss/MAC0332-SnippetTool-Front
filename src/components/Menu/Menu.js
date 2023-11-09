@@ -14,19 +14,22 @@ import folder from "../../images/folder_vermelho.png";
         <Background>
             <Link to="/" style={{ textDecoration: "none" }}>
             <MenuButton>
-                <img src={home} alt="Ícone de home" /> Home
+                <img src={home} alt="Ícone de home" /> 
+                Home
             </MenuButton>
             </Link>
 
             <Link to="/tags" style={{ textDecoration: "none" }}>
             <MenuButton>
-                <img src={tag} alt="Ícone de tag" />Tags
+                <img src={tag} alt="Ícone de tag" />
+                Tags
             </MenuButton>
             </Link>
             
             <Link to="/folders" style={{ textDecoration: "none" }}>
             <MenuButton>
-                <img src={folder} alt="Ícone de pasta" />Pastas
+                <img src={folder} alt="Ícone de pasta" />
+                Pastas
             </MenuButton>
             </Link>
 

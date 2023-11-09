@@ -1,7 +1,7 @@
-export const getUserSnippets = async (userId) => {
+export const getUserSnippets = async (folderId, tagId = null) => {
     let snippets = [];
     try{
-        const response = await fetch("http://localhost:8080/snippet/getAllSnippets/"+ userId); //TODO: trocar a url da api para uma variavel global
+        const response = await fetch("http://localhost:8080/snippet/getAllSnippets/"+ folderId + (tagId? ("?tagId=" + tagId) : "")); //TODO: trocar a url da api para uma variavel global
         if(response.ok){
             snippets = await response.json();
         } else {
