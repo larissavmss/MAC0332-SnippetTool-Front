@@ -105,28 +105,27 @@ const Login = () => {
                     </Input>
                 </Inputs>
                 <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
-                <SubmitContainer>
-                    {action === 'SignUp' && (
+                
+                {action === 'SignUp' && (
+                    <SubmitContainer>
                         <SubmitSelected onClick={handleClickSignUp}>
                             Sign Up
                         </SubmitSelected>
-                    )}
-                    {action === 'SignUp' && (
                         <SubmitUnselected onClick={handleClickLogin}>
                             Login
                         </SubmitUnselected>
-                    )}
-                    {action === 'Login' && (
+                    </SubmitContainer>
+                )}
+                {action === 'Login' && (
+                    <SubmitContainer>
                         <SubmitUnselected onClick={handleClickSignUp}>
                             Sign Up
                         </SubmitUnselected>
-                    )}
-                    {action === 'Login' && (
                         <SubmitSelected onClick={handleClickLogin}>
                             Login
                         </SubmitSelected>
-                    )}
-                </SubmitContainer>  
+                    </SubmitContainer>
+                )}
             </LoginContainer>
         </div>
     )

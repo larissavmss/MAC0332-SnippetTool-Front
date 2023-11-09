@@ -21,13 +21,13 @@ export const LeftContainer = styled.div`
   justify-content: left;
   width: 90%;
   align-items: center;
-  `;
+`;
   
-  export const RightContainer = styled.div`
-  justify-content: right;
-  display: flex;
-  width: 10%;
-  padding-right: 30px;
+export const RightContainer = styled.div`
+justify-content: right;
+display: flex;
+width: 10%;
+padding-right: 30px;
 `;
 
 export const IconMenu = styled.img`
