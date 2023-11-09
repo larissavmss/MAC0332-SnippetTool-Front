@@ -1,19 +1,42 @@
 import { useEffect, useState } from "react";
-import { getAllFolders } from "../../services/folder";
+import { createNewFolder, deleteFolder, editFolder, getAllFolders } from "../../services/folder";
 
 const Folders = () => {
     const [folders, setFolders] = useState([]);
 
     useEffect(() => {
-        const fetchTags = async () => {
-            const foldesFetched = await getAllFolders;
-            setFolders(foldesFetched);
+        const fetchFolders = async () => {
+            const foldersFetched = await getAllFolders();
+            setFolders(foldersFetched);
         }
-        fetchTags();
+        fetchFolders();
     }, [])
 
+    const handleNewFolder = async (foldername) => {
+        const folderCreated = await createNewFolder(foldername);
+        if(folderCreated) {
+            window.location.reload(false);
+        }
+    }
+
+    const handleEditFolder = async (folderToEdit) => {
+        await editFolder(folderToEdit);
+        window.location.reload(false);
+    }
+
+    const handleDeleteFolder = async (folderId) => {
+        await deleteFolder(folderId);
+        window.location.reload(false);
+    }
+
     return(
-        <h1>Folders</h1>
+        <div>
+            {folders.map((folder) => {
+                return(
+                    <h1>{folder.name}</h1>
+                )
+            })}
+        </div>
     )
 }
 
