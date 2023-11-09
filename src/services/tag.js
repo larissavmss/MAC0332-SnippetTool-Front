@@ -18,3 +18,19 @@ export const createNewTag = async (tag) => {
         return snippetCreated;
     }
 }
+
+export const getTags = async () => {
+    let snippets = [];
+    try {
+        const response = await fetch("http://localhost:8080/tag/getAllTags");
+        if (response.ok){
+            snippets = await response.json();
+        } else {
+            throw new Error("Failed to fetch tags");
+        }
+    } catch (error) {
+        console.error("Error: " + error);
+    } finally {
+        return snippets;
+    }
+}
