@@ -32,7 +32,6 @@ padding-right: 30px;
 
 export const IconMenu = styled.img`
   cursor: pointer;
-  margin-left: 20px;
   height: 25px;
   outline: none;
 `;

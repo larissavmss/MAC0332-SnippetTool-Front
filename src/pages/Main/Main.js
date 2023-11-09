@@ -35,7 +35,7 @@ const Main = () => {
                 <div className="snippetContainer">
 
                 {snippets.map((snippet)=> {
-                    return ( <button onClick={() => handleSnippetSelect(snippet.id)} className="snippet" key={snippet.id}>
+                    return ( <div onClick={() => handleSnippetSelect(snippet.id)} className="snippet" key={snippet.id}>
                         <p className="snippetContent">
                         {snippet.content}
                         </p>
@@ -45,7 +45,7 @@ const Main = () => {
                                 return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
                             })}
                         </div>
-                    </button> )
+                    </div> )
                 })}
                 {snippetPopup && <SnippetPopup snippetId={selectedSnippetId} setPopup={setSnippetPopup}/>}
                 </div>

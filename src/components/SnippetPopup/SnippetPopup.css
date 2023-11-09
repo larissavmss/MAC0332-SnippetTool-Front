@@ -24,7 +24,22 @@
     width: 15px;
 }
 
+.additionButton{
+    border-radius: 10px;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    cursor: pointer;
 
+}
+
+.additionButton > img{
+    width: 15px;
+}
 
 .popupSnippet{
     position: fixed;
