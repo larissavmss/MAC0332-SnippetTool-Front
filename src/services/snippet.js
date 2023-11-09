@@ -30,17 +30,17 @@ export const getSnippetById = async (snippetId) => {
     }
 }
 
-export const updateSnippet = async (snippet) => {
-    let snippetUpdated = null;
+export const saveSnippet = async (snippet) => {
+    let snippetUpdated = false;
     try {
         const requestOptions = {
-            method: 'UPDATE',
+            method: 'PUT',
             header: { 'Content-Type' : 'application/json'},
             body: JSON.stringify(snippet)
         }
-        const response = await fetch("http://localhost:8080/snippet", requestOptions);
+        const response = await fetch("http://localhost:8080/snippet/" + snippet.id , requestOptions);
         if (response.ok){
-            snippetUpdated = await response.json();
+            snippetUpdated = true;
         } else {
             throw new Error("Erro ao editar snippet");
         }
@@ -48,5 +48,26 @@ export const updateSnippet = async (snippet) => {
         console.log("Erro: " + error);
     } finally {
         return snippetUpdated;
+    }
+}
+
+export const deleteSnippet = async (snippetId) => {
+    let snippetDeleted = false;
+    try {
+        const requestOptions = {
+            method: 'DELETE',
+            header: { 'Content-Type' : 'application/json'},
+            body: ""
+        }
+        const response = await fetch("http://localhost:8080/snippet/" + snippetId , requestOptions);
+        if (response.ok){
+            snippetDeleted = true;
+        } else {
+            throw new Error("Erro ao excluir snippet");
+        }
+    } catch (error) {
+        console.log("Erro: " + error);
+    } finally {
+        return snippetDeleted;
     }
 }

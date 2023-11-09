@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./SnippetPopup.css";
-import { getSnippetById } from "../../services/snippet";
+import { deleteSnippet, getSnippetById, saveSnippet } from "../../services/snippet";
 import { createNewTag } from "../../services/tag";
 import closeIcon from "../../images/close.png";
 
@@ -34,6 +34,24 @@ const SnippetPopup = ({snippetId, setPopup}) => {
         createTag();
     }
 
+    const handleSaveSnippet = async () => {
+        const snippetSaved = await saveSnippet(snippetData);
+        if(snippetSaved){
+            setPopup(false);
+        } else {
+            window.alert("Erro ao salvar snippet");
+        }
+    }
+
+    const handleDeleteSnippet = async () => {
+        const snippetDeleted = await deleteSnippet(snippetData.id);
+        if(snippetDeleted){
+            setPopup(false);
+        } else {
+            window.alert("Erro ao deletar snippet");
+        }
+    }
+
     return (
         <div className="backShadow" onClick={(event) => {if (event.target === event.currentTarget) {handleClosePopup()}}}>
             <div className="popupSnippet">
@@ -60,8 +78,8 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                             </div>
                         </div>
                         <div className="columnFlexPopUP">
-                            <button>Deletar</button>
-                            <button>Salvar</button>
+                            <button onClick={handleDeleteSnippet}>Deletar</button>
+                            <button onClick={handleSaveSnippet}>Salvar</button>
                         </div>
                     </div>
 
