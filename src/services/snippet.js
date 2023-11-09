@@ -1,7 +1,7 @@
 export const getUserSnippets = async (userId) => {
     let snippets = [];
     try{
-        const response = await fetch("http://localhost:8080/snippet/getByUser/"+ userId); //TODO: trocar a url da api para uma variavel global
+        const response = await fetch("http://localhost:8080/snippet/getAllSnippets/"+ userId); //TODO: trocar a url da api para uma variavel global
         if(response.ok){
             snippets = await response.json();
         } else {
@@ -17,7 +17,7 @@ export const getUserSnippets = async (userId) => {
 export const getSnippetById = async (snippetId) => {
     let snippet = null;
     try{
-        const response = await fetch("http://localhost:8080/snippet/getById/" + snippetId);
+        const response = await fetch("http://localhost:8080/snippet/" + snippetId);
         if(response.ok){
             snippet = await response.json();
         } else {

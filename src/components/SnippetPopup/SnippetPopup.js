@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./SnippetPopup.css";
 import { getSnippetById } from "../../services/snippet";
 import { createNewTag } from "../../services/tag";
+import closeIcon from "../../images/close.png";
+
 
 const SnippetPopup = ({snippetId, setPopup}) => {
     const [snippetData, setSnippetData] = useState(null);
@@ -33,15 +35,41 @@ const SnippetPopup = ({snippetId, setPopup}) => {
     }
 
     return (
-        <div className="backShadow">
+        <div className="backShadow" onClick={(event) => {if (event.target === event.currentTarget) {handleClosePopup()}}}>
             <div className="popupSnippet">
+            <button className="closeIcon" onClick={handleClosePopup}>
+                <img src={closeIcon} alt={"close icon"}/>
+            </button>
             {(snippetData != null)?(
                 <div className="snippetDisplay">
+                    
+
+                    <div className="leftPopUp">
+                        <textarea type="text" value={snippetData.content}/>
+                    </div>
+                    <div className="rightPopUp">
+                        <div>
+                            <h2>{snippetData.name}</h2>
+                            <h3>Data de criação:  <br/>{new Date(snippetData.creation_date).toLocaleDateString()} {new Date(snippetData.creation_date).toLocaleTimeString()}</h3>
+                            <h3>Data de modificação:  <br/>{new Date(snippetData.last_modification).toLocaleDateString()} {new Date(snippetData.last_modification).toLocaleTimeString()}</h3>
+
+                            <div className="tagContainerPopUp">
+                                {snippetData.tags.map((tag)=>{
+                                    return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
+                                })}
+                            </div>
+                        </div>
+                        <div className="columnFlexPopUP">
+                            <button>Deletar</button>
+                            <button>Salvar</button>
+                        </div>
+                    </div>
+
 
                 </div>
             ) : (
                 <div className="snippetErrorDisplay">
-
+                    <h2>Erro ao carregar o snippet</h2>
                 </div>
             )}
 

@@ -27,9 +27,12 @@
     
     padding: 0;
     width: 30%;
-    height: 350px;
+    font-size: 1em;
+    /* height: 350px; */
     border-radius: 10px;
     border: 1px solid #666;
+    background: none;
+    color: white;
     margin: 1.5%;
     text-align: left;
     transition: 0.25s;
@@ -48,16 +51,17 @@
     position: relative;
     word-wrap: break-word;
     overflow: hidden;
-    height: 12em; /* (Number of lines you want visible) * (line-height) */
-    line-height: 1.2em;
-    text-align:justify;
+    height: 14em; /* (Number of lines you want visible) * (line-height) */
+    line-height: 1.5em;
+    text-align:left;
   
 }
 
 .snippetTitle{
     padding-left: 20px;
-    margin: 5px 0 22px 0;
-    font-size: 1.2em;
+    margin: 25px 0 22px 0;
+    font-size: 1.5em;
+    font-family: FiraSans;
 }
 
 .snippetTag{
@@ -65,14 +69,16 @@
     border-radius: 7px;
     padding: 5px 10px;
     margin: 5px;
-    font-size: 0.8em;
+    font-size: 1em;
     color: white;
+    font-family: FiraSans;
+
 }
 
 .tagContainer{
     display: flex;
     justify-content: right;
-    margin: 5px;
+    margin: 10px;
 }
 
 .snippetContainer{
