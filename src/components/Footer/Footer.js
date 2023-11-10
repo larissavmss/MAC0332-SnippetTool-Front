@@ -34,8 +34,7 @@ const Footer = () => {
                         <Underline></Underline>
                     </MiddleTop>
                     <List>
-                        <Content 
-                            href="https://github.com/mac0332/MAC0332-SnippetTool-Front">Frontend Repository</Content>
+                        <Content href="https://github.com/mac0332/MAC0332-SnippetTool-Front">Frontend Repository</Content>
                         <Content href="https://github.com/mac0332/MAC0332-SnippetTool-API">Backend Repository</Content>
                     </List>
                 </MiddleSquare>
@@ -45,7 +44,7 @@ const Footer = () => {
                         <Underline></Underline>
                     </MiddleTop>
                     <List>
-                        <Content >Larissa Medeiros</Content>
+                        <Content>Larissa Medeiros</Content>
                         <Content>Kaique Oliveira</Content>
                         <Content>Cássio Cancio</Content>
                         <Content>Gabriel Arrais</Content>

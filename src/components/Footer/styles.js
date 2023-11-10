@@ -4,7 +4,7 @@ import { grey } from "../../utils/constants/constants";
 export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #170506
+  background-color: #0a0a0a;
 
 `;
 
@@ -64,5 +64,6 @@ export const Content = styled.a`
 export const Bottom = styled.div`
   color: white;
   display: flex;
+  padding: 5px;
 `;
 
