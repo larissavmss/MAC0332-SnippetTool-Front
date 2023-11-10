@@ -4,39 +4,65 @@ import { grey } from "../../utils/constants/constants";
 export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: #170506
 
 `;
 
 export const Top = styled.div`
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 `;
 
 export const LogoSnippet = styled.img`
-    margin: 0px 30px;
+
 `
 
 export const Middle = styled.div`
-
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 5%;
 `;
 
 export const MiddleSquare = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  gap: 10px;
+  padding: 10px;
 `;
+
+export const MiddleTop = styled.div`
+  displey: flex;
+  flex-direction: column;
+`
 
 export const Title = styled.div`
-
+  color: white;
 `;
+
+export const Underline = styled.div`
+  width: 60px;
+  height: 2px;
+  background: white;
+  border-radius: 9px;
+`
 
 export const List = styled.div`
-
+  color: white;
+  display: flex;
+  flex-direction: column;
 `;
 
-export const Content = styled.div`
-
+export const Content = styled.a`
+  padding: 5px;
+  text-decoration: none;
+  color: white;
 `;
 
 export const Bottom = styled.div`
-
+  color: white;
+  display: flex;
 `;
 

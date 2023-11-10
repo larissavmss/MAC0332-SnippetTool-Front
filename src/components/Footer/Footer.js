@@ -4,6 +4,8 @@ import {
     FooterContainer,
     Top,
     Middle,
+    MiddleTop,
+    Underline,
     MiddleSquare,
     Title,
     List,
@@ -19,33 +21,44 @@ const Footer = () => {
     return (
         <FooterContainer>
             <Top>
-                <LogoSnippet 
+                {/* <LogoSnippet 
                     src={logo}
                     alt="Snippet Logo"
-                />
+                    style={{width: "6%"}}
+                /> */}
             </Top>
             <Middle>
                 <MiddleSquare>
-                    <Title>GitHub Repositories</Title>
+                    <MiddleTop>
+                        <Title>GitHub Repositories</Title>
+                        <Underline></Underline>
+                    </MiddleTop>
                     <List>
-                        <Content>LinkFront</Content>
-                        <Content>LinkBack</Content>
+                        <Content 
+                            href="https://github.com/mac0332/MAC0332-SnippetTool-Front">Frontend Repository</Content>
+                        <Content href="https://github.com/mac0332/MAC0332-SnippetTool-API">Backend Repository</Content>
                     </List>
                 </MiddleSquare>
                 <MiddleSquare>
-                    <Title>Developers</Title>
+                    <MiddleTop>
+                        <Title>Developers</Title>
+                        <Underline></Underline>
+                    </MiddleTop>
                     <List>
-                        <Content>LinkLarissa</Content>
-                        <Content>LinkKaique</Content>
-                        <Content>LinkCassio</Content>
-                        <Content>LinkArrais</Content>
-                        <Content>LinkNathan</Content>
+                        <Content >Larissa Medeiros</Content>
+                        <Content>Kaique Oliveira</Content>
+                        <Content>Cássio Cancio</Content>
+                        <Content>Gabriel Arrais</Content>
+                        <Content>Nathan Nunes</Content>
                     </List>
                 </MiddleSquare>
                 <MiddleSquare>
-                    <Title>Professor</Title>
+                    <MiddleTop>
+                        <Title>Professor</Title>
+                        <Underline></Underline>    
+                    </MiddleTop>
                     <List>
-                        <Content>LinkProfessor</Content>
+                        <Content>Paulo Meireles</Content>
                     </List>
                 </MiddleSquare>
             </Middle>
