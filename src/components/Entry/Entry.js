@@ -1,8 +1,12 @@
 import {
-    EntryContainer
+    EntryContainer,
+    EntryUpperPart,
+    MessageBoard,
+    DivisionLine
 } from "./styles";
 
 import Login from "../Login/Login"
+import Footer from "../Footer/Footer"
 
 
 const Entry = () => {
@@ -10,7 +14,7 @@ const Entry = () => {
         <EntryContainer>
             <EntryUpperPart>
                 <MessageBoard>
-
+                    Blah blah blah, texto texto
                 </MessageBoard>
 
                 <DivisionLine>
@@ -20,9 +24,9 @@ const Entry = () => {
                 <Login/>
             </EntryUpperPart>
 
-            <EntryFooter>
-                
-            </EntryFooter>
+            <Footer/>
         </EntryContainer>
     )
 }
+
+export default Entry

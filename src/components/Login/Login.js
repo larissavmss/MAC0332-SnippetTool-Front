@@ -55,79 +55,77 @@ const Login = () => {
     }
 
     return (
-        <div className='container'>
-            <LoginContainer>
-                <Header>
-                    <Text> {action}</Text>
-                    <Underline></Underline>
-                </Header>
-                <Inputs>
-                    {action === 'SignUp' && (
-                        <Input>
-                            <UserIcon 
-                                src={usuario_icon} 
-                                alt="User Icon"
-                                style={{width: "30px"}}
-                            />
-                            <InsideInput 
-                                type="text"
-                                placeholder="Usuário"
-                                value={userName}
-                                onChange={handleUserNameChange}
-                            />
-                        </Input>
-                    )}
-                    <Input>
-                        <EmailIcon 
-                            src={email_icon} 
-                            alt="Email Icon"
-                            style={{width: "30px"}}
-                        />
-                        <InsideInput 
-                            type="email"
-                            placeholder="E-mail"
-                            value={userEmail}
-                            onChange={handleUserEmailChange}
-                        />
-                    </Input>
-                    <Input>
-                        <PasswordIcon 
-                            src={password_icon} 
-                            alt=""
-                            style={{width: "30px"}}
-                        />
-                        <InsideInput 
-                            type="password"
-                            placeholder="Password"
-                            value = {userPassword}
-                            onChange={handleUserPasswordChange}
-                        />
-                    </Input>
-                </Inputs>
-                <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
-                
+        <LoginContainer>
+            <Header>
+                <Text> {action}</Text>
+                <Underline></Underline>
+            </Header>
+            <Inputs>
                 {action === 'SignUp' && (
-                    <SubmitContainer>
-                        <SubmitSelected onClick={handleClickSignUp}>
-                            Sign Up
-                        </SubmitSelected>
-                        <SubmitUnselected onClick={handleClickLogin}>
-                            Login
-                        </SubmitUnselected>
-                    </SubmitContainer>
+                    <Input>
+                        <UserIcon 
+                            src={usuario_icon} 
+                            alt="User Icon"
+                            style={{width: "30px"}}
+                        />
+                        <InsideInput 
+                            type="text"
+                            placeholder="Usuário"
+                            value={userName}
+                            onChange={handleUserNameChange}
+                        />
+                    </Input>
                 )}
-                {action === 'Login' && (
-                    <SubmitContainer>
-                        <SubmitUnselected onClick={handleClickSignUp}>
-                            Sign Up
-                        </SubmitUnselected>
-                        <SubmitSelected onClick={handleClickLogin}>
-                            Login
-                        </SubmitSelected>
-                    </SubmitContainer>
-                )}
-            </LoginContainer>
-        </div>
+                <Input>
+                    <EmailIcon 
+                        src={email_icon} 
+                        alt="Email Icon"
+                        style={{width: "30px"}}
+                    />
+                    <InsideInput 
+                        type="email"
+                        placeholder="E-mail"
+                        value={userEmail}
+                        onChange={handleUserEmailChange}
+                    />
+                </Input>
+                <Input>
+                    <PasswordIcon 
+                        src={password_icon} 
+                        alt=""
+                        style={{width: "30px"}}
+                    />
+                    <InsideInput 
+                        type="password"
+                        placeholder="Password"
+                        value = {userPassword}
+                        onChange={handleUserPasswordChange}
+                    />
+                </Input>
+            </Inputs>
+            <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
+            
+            {action === 'SignUp' && (
+                <SubmitContainer>
+                    <SubmitSelected onClick={handleClickSignUp}>
+                        Sign Up
+                    </SubmitSelected>
+                    <SubmitUnselected onClick={handleClickLogin}>
+                        Login
+                    </SubmitUnselected>
+                </SubmitContainer>
+            )}
+            {action === 'Login' && (
+                <SubmitContainer>
+                    <SubmitUnselected onClick={handleClickSignUp}>
+                        Sign Up
+                    </SubmitUnselected>
+                    <SubmitSelected onClick={handleClickLogin}>
+                        Login
+                    </SubmitSelected>
+                </SubmitContainer>
+            )}
+        </LoginContainer>
     )
 }
 
