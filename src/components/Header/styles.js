@@ -11,7 +11,7 @@ export const HeaderContainer = styled.div`
   position: fixed;
   width: 100%;
   top: 0px;
-  height: 40px;
+  height: 60px;
   border-bottom: 1px solid #666;
   z-index: 1000;
 `;
@@ -19,15 +19,14 @@ export const HeaderContainer = styled.div`
 export const LeftContainer = styled.div`
   display: flex;
   justify-content: left;
-  width: 90%;
+  width: 85%;
   align-items: center;
 `;
   
 export const RightContainer = styled.div`
-justify-content: right;
 display: flex;
-width: 10%;
-padding-right: 30px;
+justify-content: space-evenly;
+width: 15%;
 `;
 
 export const IconMenu = styled.img`
@@ -50,7 +49,7 @@ export const SearchBar = styled.div`
   border-radius: 5px;
   border: none;
   margin: 0 10px;
-  width: 70%;
+  width: 80%;
   height: 24px;
   font-size: 1.0em;
   color: white;
