@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { grey } from "../../utils/constants/constants";
 
 export const LoginContainer = styled.div`
-    background-color: ${grey};
+    background-color: black;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -10,6 +10,7 @@ export const LoginContainer = styled.div`
     padding: 30px;
     border-radius: 5%;
     width: 25%;
+    height: 70%;
 `
 export const Header = styled.div`
     display: flex;

@@ -34,7 +34,9 @@
     width: 30px;
     margin: 5px;
     cursor: pointer;
-
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 .additionButton > img{
@@ -50,7 +52,7 @@
     width: 70%;
     background-color: #1b1c19;
     border: 1px solid #1b1c19;
-    box-shadow: 0 0 50px #1b1c19;;
+    box-shadow: 0 0 50px #1b1c19;
     display: flex;
     /* padding: 20px; */
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */

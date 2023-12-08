@@ -5,6 +5,7 @@ export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #0a0a0a;
+  padding: 20px;
 
 `;
 

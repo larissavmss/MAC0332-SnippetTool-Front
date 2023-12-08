@@ -4,6 +4,7 @@ import { associateTagToSnippet, deleteSnippet, getSnippetById, saveSnippet } fro
 import { createNewTag } from "../../services/tag";
 import closeIcon from "../../images/close.png";
 import plusIcon from "../../images/plus.png"
+import ConfirmationPopUp from "../ConfirmationPopUp/ConfirmationPopUp";
 
 const SnippetPopup = ({snippetId, setPopup}) => {
     const [snippetData, setSnippetData] = useState(null);
@@ -109,6 +110,8 @@ const SnippetPopup = ({snippetId, setPopup}) => {
             )}
 
             </div>
+
+            {/* <ConfirmationPopUp popUpMessage={"Tem certeza que deseja excluir?"}/> */}
         </div>
     )
 }
