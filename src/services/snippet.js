@@ -1,7 +1,11 @@
 export const getUserSnippets = async (folderId, tagId = null) => {
     let snippets = [];
+    const requestOptions = {
+        method: 'GET',
+        credentials: 'include'
+    }
     try{
-        const response = await fetch("http://localhost:8080/snippet/getAllSnippets/"+ folderId + (tagId? ("?tagId=" + tagId) : "")); //TODO: trocar a url da api para uma variavel global
+        const response = await fetch("http://localhost:8080/snippet/getAllSnippets/"+ folderId + (tagId? ("?tagId=" + tagId) : ""), requestOptions); //TODO: trocar a url da api para uma variavel global
         if(response.ok){
             snippets = await response.json();
         } else {
