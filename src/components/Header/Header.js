@@ -19,11 +19,14 @@ import lupinha from "../../images/lupinha_3.png"; // Import the lupinha image
 import { useState } from "react";
 import Menu from "../Menu/Menu";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from '../../features/auth/userSlice'; 
 
 const Header = ({ openMenu, setOpenMenu }) => {
   const [searchText, setSearchText] = useState("");
+  const user = useSelector(selectUser);
 
-  const userIsLogged = false;
+  const userIsLogged = user.isAuthenticated;
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);

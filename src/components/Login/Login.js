@@ -20,14 +20,21 @@ import logo from "../../images/logobranca.png";
 import email_icon from "../../images/email_icon.png";
 import password_icon from "../../images/password_icon.png";
 import usuario_icon from "../../images/black_user_icon.png";
+import {
+    login,
+    selectUser
+} from '../../features/auth/userSlice'
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-
     const [action, setAction] = useState("Login")
-
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
+
+    const user = useSelector(selectUser);
+    console.log(user);
+    const dispatch = useDispatch();
 
     const handleUserNameChange = (event) => {
         setUserName(event.target.value);
@@ -50,7 +57,8 @@ const Login = () => {
         if (action === "SignUp") {
             setAction("Login");
         } else {
-            
+            dispatch(login({username: userEmail, token: "random"}))
+            window.location.href = '/';
         }
     }
 
