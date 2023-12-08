@@ -35,7 +35,7 @@ export const saveSnippet = async (snippet) => {
     try {
         const requestOptions = {
             method: 'PUT',
-            header: { 'Content-Type' : 'application/json'},
+            headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify(snippet)
         }
         const response = await fetch("http://localhost:8080/snippet/" + snippet.id , requestOptions);
@@ -56,7 +56,7 @@ export const deleteSnippet = async (snippetId) => {
     try {
         const requestOptions = {
             method: 'DELETE',
-            header: { 'Content-Type' : 'application/json'},
+            headers: { 'Content-Type' : 'application/json'},
             body: ""
         }
         const response = await fetch("http://localhost:8080/snippet/" + snippetId , requestOptions);
@@ -69,5 +69,26 @@ export const deleteSnippet = async (snippetId) => {
         console.log("Erro: " + error);
     } finally {
         return snippetDeleted;
+    }
+}
+
+export const associateTagToSnippet = async (snippetId, tagId) => {
+    let associated = false;
+    try {
+        const requestOptions = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"tagId": tagId})
+        }
+        const response = await fetch("http://localhost:8080/snippet/addTag/" + snippetId, requestOptions);
+        if(response.ok){
+            associated = true;
+        } else {
+            throw new Error("Failed to tag to snippet");
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return associated;
     }
 }

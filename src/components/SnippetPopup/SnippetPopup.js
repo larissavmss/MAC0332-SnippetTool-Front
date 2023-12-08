@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./SnippetPopup.css";
-import { deleteSnippet, getSnippetById, saveSnippet } from "../../services/snippet";
+import { associateTagToSnippet, deleteSnippet, getSnippetById, saveSnippet } from "../../services/snippet";
 import { createNewTag } from "../../services/tag";
 import closeIcon from "../../images/close.png";
 import plusIcon from "../../images/plus.png"
@@ -8,7 +8,7 @@ import plusIcon from "../../images/plus.png"
 const SnippetPopup = ({snippetId, setPopup}) => {
     const [snippetData, setSnippetData] = useState(null);
     const [tagCreateOption, setTagCreateOption] = useState(false);
-    const [tagToCreate, setTagToCreate] = useState({ name: "" });
+    const [tagToCreate, setTagToCreate] = useState({ name: "", color: "red" });
 
     useEffect(() => {
         const fetchSnippetData = async () => {
@@ -16,7 +16,7 @@ const SnippetPopup = ({snippetId, setPopup}) => {
             setSnippetData(snippet);
         }
         fetchSnippetData();
-    })
+    }, [])
 
     const handleClosePopup = () =>{
         setPopup(false);
@@ -24,12 +24,21 @@ const SnippetPopup = ({snippetId, setPopup}) => {
 
     const handleTagCreate = (tag) => {
         const createTag = async () => {
-            const snippetCreated = await createNewTag(tag);
-            if(snippetCreated != null){
+            const tagCreated = await createNewTag(tag);
+            if(tagCreated != null){
                 setTagCreateOption(false);
-                snippetData.tags.push(snippetCreated);
+                snippetData.tags.push(tagCreated);
+                setTagToCreate({ name: "", color: "red" });
+                const tagAssociatedToSnippet = await associateTagToSnippet(snippetData.id, tagCreated.id);
+                if(tagAssociatedToSnippet) {
+
+                } else {
+                    window.alert("Erro ao criar tag para snippet");
+                    // deletar snippet ou mudar endpoint
+                }
+            } else {
+                window.alert("Erro ao criar Tag");
             }
-            setTagToCreate({ name: "" });
         }
         createTag();
     }
@@ -46,10 +55,17 @@ const SnippetPopup = ({snippetId, setPopup}) => {
     const handleDeleteSnippet = async () => {
         const snippetDeleted = await deleteSnippet(snippetData.id);
         if(snippetDeleted){
-            setPopup(false);
+            window.location.reload();
         } else {
             window.alert("Erro ao deletar snippet");
         }
+    }
+
+    const handleObjectInput = ({name, value}) => {
+        setSnippetData({
+            ...snippetData, 
+            [name]:value
+        });
     }
 
     return (
@@ -63,7 +79,7 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                     
 
                     <div className="leftPopUp">
-                        <textarea type="text" value={snippetData.content}/>
+                        <textarea type="text" value={snippetData.content} onChange={(e) => handleObjectInput({ name:'content', value: e.target.value })}/>
                     </div>
                     <div className="rightPopUp">
                         <div>
@@ -75,7 +91,7 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                                 {snippetData.tags.map((tag)=>{
                                     return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
                                 })}
-                                <div className="additionButton"><img src={plusIcon}/></div>
+                                {tagCreateOption ? <input className="snippetTagInput"/> : <div className="additionButton" onClick={()=>setTagCreateOption(true)}><img src={plusIcon}/></div>}
                             </div>
                         </div>
                         <div className="columnFlexPopUP">
