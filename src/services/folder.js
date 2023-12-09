@@ -76,5 +76,3 @@ export const deleteFolder = async (folderId) => {
         return removed;
     }
 }
-
-
