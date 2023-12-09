@@ -3,7 +3,7 @@ export const createNewTag = async (tag) => {
     try {
         const requestOptions = {
             method: 'POST',
-            header: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(tag)
         };
         const response = fetch("http://localhost:8080/tag", requestOptions);

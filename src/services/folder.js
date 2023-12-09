@@ -1,7 +1,7 @@
 export const getAllFolders = async () => {
     let folders = [];
     try {
-        const response = await fetch("http://localhost:8080/folder/getAllFolders");
+        const response = await fetch("http://localhost:8080/folder");
         if(response.ok){
             folders = await response.json();
         } else {
@@ -19,7 +19,7 @@ export const createNewFolder = async (foldername) => {
     try {
         const requestOptions = {
             "method": "post",
-            "header": {"Content-Type": "application/json"},
+            "headers": {"Content-Type": "application/json"},
             "body": JSON.stringify({"name": foldername})
         }
         const response = await fetch("http://localhost:8080/folder", requestOptions);
@@ -40,7 +40,7 @@ export const editFolder = async (folder) => {
     try {
         const requestOptions = {
             "method": "put",
-            "header": {"Content-Type": "application/json"},
+            "headers": {"Content-Type": "application/json"},
             "body": JSON.stringify({"name": folder.name})
         }
         const response = await fetch("http://localhost:8080/folder/" + folder.id, requestOptions);
@@ -61,7 +61,7 @@ export const deleteFolder = async (folderId) => {
     try {
         const requestOptions = {
             "method": "delete",
-            "header": {"Content-Type": "application/json"},
+            "headers": {"Content-Type": "application/json"},
             "body": ""
         }
         const response = await fetch("http://localhost:8080/folder/" + folderId, requestOptions);
