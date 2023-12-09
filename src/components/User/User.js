@@ -27,6 +27,4 @@ const User = () => {
     );
 }
 
-// TODO: Change username  (Larissa)
-
 export default User;

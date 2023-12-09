@@ -12,7 +12,7 @@ const Main = () => {
 
     useEffect(()=>{
         const fetchSnippetsData = async () =>   {
-            const response = await getUserSnippets(1); //TODO: lembrar de trocar 1 para o id do user
+            const response = await getUserSnippets(1);
             setSnippets(response);
         }
         fetchSnippetsData();

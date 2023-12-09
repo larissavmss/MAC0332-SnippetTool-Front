@@ -36,5 +36,5 @@ import folder from "../../images/folder_vermelho.png";
         </Background>
     );
 }
-// TODO: Fazer Menu com position absolute (Cassio)
+
 export default Menu;
