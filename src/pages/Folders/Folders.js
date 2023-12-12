@@ -33,7 +33,7 @@ const Folders = () => {
                 <div className="titleAndAdd">
                     <h1>Pastas</h1>
                     <div className="flexAdd">
-                        <input className="addInputFolder" value={folderName} onChange={(e)=>{setFolderName(e.target.value)}}/>
+                        <input placeholder="Nome da pasta" className="addInputFolder" value={folderName} onChange={(e)=>{setFolderName(e.target.value)}}/>
                         <div className="addButtonFolder" onClick={handleNewFolder}><img src={folderAdd} alt="Add"/></div>
                     </div>
                 </div>

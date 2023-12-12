@@ -26,10 +26,11 @@
     flex: auto;
 }
 
-.tagContainer{
+.tagContainerPopUp{
     display: flex;
     justify-content: right;
     margin: 10px;
+    padding: 0 0 15px 15px;
 }
 
 .snippetTag{

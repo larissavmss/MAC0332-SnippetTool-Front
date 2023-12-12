@@ -16,6 +16,16 @@ const SnippetsContainer = ({ folderId }) => {
         fetchSnippetsData();
     }, [])
 
+    const colorTag = (colorName) => {
+        if (colorName == "RED")     return "red";
+        if (colorName == "BLUE")    return "blue";
+        if (colorName == "YELLOW")  return "yellow";
+        if (colorName == "GREEN")   return "green";
+        if (colorName == "ORANGE")  return "orange";
+        if (colorName == "PURPLE")  return "purple";
+        else                        return "white"
+    }
+
     const handleSnippetSelect = (snippetId) => {
         setSnippetPopup(true);
         setSelectedSnippetId(snippetId)
@@ -38,9 +48,9 @@ const SnippetsContainer = ({ folderId }) => {
                     {snippet.content}
                     </p>
                     <h2 className="snippetTitle">{snippet.name}</h2>
-                    <div className="tagContainer">
+                    <div className="tagContainerPopUp">
                         {snippet.tags.map((tag)=>{
-                            return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
+                            return ( <div style={{"border": "1px solid "+ colorTag(tag.color)}} className="snippetTag" key={tag.id}>{tag.name}</div> )
                         })}
                     </div>
                 </div> )

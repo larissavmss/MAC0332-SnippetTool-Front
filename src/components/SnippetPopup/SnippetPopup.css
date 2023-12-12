@@ -131,8 +131,49 @@ textarea::-webkit-scrollbar-track {
     font-weight: bolder;
 }
 
-.tagContainerPopUp{
+.tagTitlePop{
+    margin: 20px 0 0 0;
+}
+
+
+.tagAddFlex{
+    width: 100%;
+    margin-right: 5px;
     display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-top: 10px;
+}
+.tagAddFlex img{
+    width: 15px;
+}
+.tagAddFlex select{
+    background-color: #1b1c19;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    margin: 0;
+    border-radius: 5px;
+    height: 30px;
+}
+.tagAddFlex button{
+    background-color: #ef273e;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+
+
+.tagContainerPopUp{
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: left;
 }
 
@@ -140,6 +181,21 @@ textarea::-webkit-scrollbar-track {
     transition: 0.25s;
     background-color: #ef273e;
 }
+
+.titleInputPopUp{
+    background: transparent;
+    border: none;
+    color: white;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    height: 40px;
+    width: 100%;
+    margin-top: 35px;
+    font-family: 'FiraSans';
+    padding: 10px;
+    border-radius: 5px;
+}
+
 
 .rightPopUp{
     text-align: left;
@@ -170,4 +226,22 @@ textarea::-webkit-scrollbar-track {
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.snippetTagPopUp{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 5px;
+    margin: 5px 5px 5px 0;
+    font-size: 0.9em;
+}
+
+
+.iconTagClose{
+    width: 8px;
+    height: 8px;
+    margin-left: 5px;
 }

@@ -6,6 +6,7 @@ import closeIcon from "../../images/close.png";
 import plusIcon from "../../images/plus.png"
 import ConfirmationPopUp from "../ConfirmationPopUp/ConfirmationPopUp";
 import emptySnippet from "../../utils/constants/emptySnippet";
+import tagAdd from "../../images/tagAdd.png"
 
 const SnippetPopup = ({snippetId, setPopup}) => {
     const [snippetData, setSnippetData] = useState(emptySnippet);
@@ -32,6 +33,16 @@ const SnippetPopup = ({snippetId, setPopup}) => {
 
     const handleClosePopup = () =>{
         setPopup(false);
+    }
+
+    const colorTag = (colorName) => {
+        if (colorName == "RED")     return "red";
+        if (colorName == "BLUE")    return "blue";
+        if (colorName == "YELLOW")  return "yellow";
+        if (colorName == "GREEN")   return "green";
+        if (colorName == "ORANGE")  return "orange";
+        if (colorName == "PURPLE")  return "purple";
+        else                        return "white"
     }
 
     const handleTagCreate = (tag) => {
@@ -97,16 +108,28 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                     </div>
                     <div className="rightPopUp">
                         <div>
-                            <textarea type="text" value={snippetData.name} onChange={(e) => handleObjectInput({ name:'name', value: e.target.value })}/>
+                            <input className="titleInputPopUp" type="text" value={snippetData.name} onChange={(e) => handleObjectInput({ name:'name', value: e.target.value })}/>
                             <h3>Data de criação:  <br/>{new Date(snippetData.creation_date).toLocaleDateString()}</h3>
                             <h3>Data de modificação:  <br/>{new Date(snippetData.last_modification).toLocaleDateString()}</h3>
 
+                            <h3 className="tagTitlePop">Tags</h3>
                             <div className="tagContainerPopUp">
                                 {snippetData.tags.map((tag)=>{
-                                    return ( <div className="snippetTag" key={tag.id}>{tag.name}</div> )
+                                    return ( 
+
+<div className="snippetTagPopUp" style={{"border": "1px solid "+ colorTag(tag.color)}} key={tag.id}>{tag.name} <img className="iconTagClose" src={closeIcon}/> </div> 
+
+)
                                 })}
-                                {tagCreateOption ? <input className="snippetTagInput"/> : <div className="additionButton" onClick={()=>setTagCreateOption(true)}><img src={plusIcon}/></div>}
                             </div>
+                            
+                            <div className="tagAddFlex">
+                                <select>
+                                    <option disabled selected>Associar tag</option>
+                                </select>
+                                <button><img src={tagAdd}/></button>
+                            </div>
+
                         </div>
                         <div className="columnFlexPopUP">
                             <button onClick={handleDeleteSnippet}>Deletar</button>
