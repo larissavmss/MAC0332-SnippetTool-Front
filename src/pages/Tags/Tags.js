@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
 import { getTags, createNewTag, editTag, deleteTag } from "../../services/tag";
 import Header from "../../components/Header/Header";
+import "./Tags.css"
+import tagAdd from "../../images/tagAdd.png"
+import redTagIcon from "../../images/tag_vermelho.png"
+import blueTagIcon from "../../images/tag_azul.png"
+import yellowTagIcon from "../../images/tag_amarelo.png"
+import greenTagIcon from "../../images/tag_verde.png"
+import orangeTagIcon from "../../images/tag_laranja.png"
+import purpleTagIcon from "../../images/tag_roxo.png"
+import whiteTagIcon from "../../images/tag_branco.png"
 
 const Tags = () => {
-
+    
     const [openMenu, setOpenMenu] = useState(false);
 
     const [tags, setTags] = useState([]);
@@ -24,6 +33,16 @@ const Tags = () => {
         }
     }
 
+    const selectColor = (colorName) =>{
+        if (colorName == "RED") return redTagIcon;
+        if (colorName == "BLUE") return blueTagIcon;
+        if (colorName == "YELLOW") return yellowTagIcon;
+        if (colorName == "GREEN") return greenTagIcon;
+        if (colorName == "ORANGE") return orangeTagIcon;
+        if (colorName == "PURPLE") return purpleTagIcon;
+        else return whiteTagIcon
+    }
+
     const handleEditTag = async (tagToEdit) => {
         await editTag(tagToEdit);
         window.location.reload(false);
@@ -38,12 +57,35 @@ const Tags = () => {
         <div>
             <Header openMenu={openMenu} setOpenMenu={setOpenMenu}/>
             <div className={`content ${openMenu ? 'content-menu-aberto' : ''}`}>
-            <h1>Tags</h1>
-                {tags.map((tag) => {
-                    return(
-                        <h1>{tag.name}</h1>
+                
+                <div className="titleAndAdd">
+                    <h1>Tags</h1>
+                    <div className="flexAdd">
+                        <input placeholder="Nome da tag" className="addInputTag"/>
+                        <select className="addSelectTag">
+                            <option disabled>Escolha cor</option>
+                            <option value="RED">Vermelho</option>
+                            <option value="BLUE">Azul</option>
+                            <option value="YELLOW">Amarelo</option>
+                            <option value="GREEN">Verde</option>
+                            <option value="ORANGE">Laranja</option>
+                            <option value="PURPLE">Roxo</option>
+                        </select>
+                        <div className="addButtonTag"><img src={tagAdd}/></div>
+                    </div>
+                </div>
+
+                <div className="tagWrap">
+                    {tags.map((tag) => {
+                        return(
+                            <div className="tagContainer">
+                                <img src={selectColor(tag.color)}/>
+                                <h3>{tag.name}</h3>
+                            </div>
                         )
                     })}
+
+                </div>
             </div>
         </div>
     )

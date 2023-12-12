@@ -1,0 +1,108 @@
+.tagContainer{
+    height: 180px;
+    width: 175px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    transition: 0.25s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tagContainer:hover{
+    background-color: #444;
+    transition: 0.25s;
+}
+
+.tagContainer > img{
+    width: 80px;
+    max-height: 80px;
+    user-select: none;
+}
+
+.tagContainer > h3 {
+    font-size: 1.2em;
+    font-weight: 100;
+    height: 2.4em;
+    color: white;
+    margin: 0;
+
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+}
+
+
+
+.tagWrap{
+    width: 90%;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding-bottom: 100px;
+}
+
+.titleAndAdd{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 100px;
+    padding-left: 30px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+.addSelectTag{
+    border: 1px solid white;
+    border-radius: 5px;
+    background: transparent;
+    height: 35px;
+    margin: 0 10px 0 0;
+    padding: 10px;
+    color: white;
+    background-color: #1b1c19;
+}
+
+
+
+
+
+.addButtonTag{
+    background-color: #ef273e;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 5px solid #ef273e;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 35px;
+}
+
+.addButtonTag > img{
+    width: 20px;
+}
+
+.addInputTag{
+    border: 1px solid white;
+    border-radius: 5px;
+    background: transparent;
+    height: 35px;
+    margin: 0 10px 0 0;
+    padding: 10px;
+    color: white;
+}
+
+.flexAdd{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
