@@ -50,7 +50,7 @@ export const SearchBar = styled.div`
   border: none;
   margin: 0 10px;
   width: 80%;
-  height: 24px;
+  height: 30px;
   font-size: 1.0em;
   color: white;
   `;
