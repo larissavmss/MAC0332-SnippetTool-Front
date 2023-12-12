@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { createNewFolder, deleteFolder, editFolder, getAllFolders } from "../../services/folder";
+import { createNewFolder, getAllFolders } from "../../services/folder";
 import Header from "../../components/Header/Header";
 import folderIcon from "../../images/folder_vermelho.png";
 import folderAdd from "../../images/addFolder.png"
 import './Folders.css'
+import { Link } from "react-router-dom";
 const Folders = () => {
-    const [openMenu, setOpenMenu] = useState(false);
-
-    const [folders, setFolders] = useState([]);
+    const [ openMenu, setOpenMenu ] = useState(false);
+    const [ folderName, setFolderName ] = useState("");
+    const [ folders, setFolders ] = useState([]);
 
     useEffect(() => {
         const fetchFolders = async () => {
@@ -17,21 +18,11 @@ const Folders = () => {
         fetchFolders();
     }, [])
 
-    const handleNewFolder = async (foldername) => {
-        const folderCreated = await createNewFolder(foldername);
+    const handleNewFolder = async () => {
+        const folderCreated = await createNewFolder(folderName);
         if(folderCreated) {
             window.location.reload(false);
         }
-    }
-
-    const handleEditFolder = async (folderToEdit) => {
-        await editFolder(folderToEdit);
-        window.location.reload(false);
-    }
-
-    const handleDeleteFolder = async (folderId) => {
-        await deleteFolder(folderId);
-        window.location.reload(false);
     }
 
     return(
@@ -42,18 +33,18 @@ const Folders = () => {
                 <div className="titleAndAdd">
                     <h1>Pastas</h1>
                     <div className="flexAdd">
-                        <input className="addInputFolder"/>
-                        <div className="addButtonFolder"><img src={folderAdd}/></div>
+                        <input className="addInputFolder" value={folderName} onChange={(e)=>{setFolderName(e.target.value)}}/>
+                        <div className="addButtonFolder" onClick={handleNewFolder}><img src={folderAdd} alt="Add"/></div>
                     </div>
                 </div>
 
                 <div className="folderWrap">
                     {folders.map((folder) => {
                         return(
-                            <div className="folderContainer">
-                                <img src={folderIcon}/>
+                            <Link className="folderContainer" to={`/folder/${folder.id}`} style={{ textDecoration: "none" }}>
+                                <img src={folderIcon} alt="Pasta"/>
                                 <h3>{folder.name}</h3>
-                            </div>
+                            </Link>
                         )
                     })}
                 </div>

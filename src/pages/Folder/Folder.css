@@ -1,0 +1,12 @@
+.folderInfo > h1 {
+    font-size: 1.2em;
+    font-weight: 100;
+    height: 2.4em;
+    color: white;
+    margin: 0;
+
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+}
