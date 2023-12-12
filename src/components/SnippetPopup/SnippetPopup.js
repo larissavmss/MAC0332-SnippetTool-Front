@@ -1,23 +1,34 @@
 import { useEffect, useState } from "react";
 import "./SnippetPopup.css";
-import { associateTagToSnippet, deleteSnippet, getSnippetById, saveSnippet } from "../../services/snippet";
+import { associateTagToSnippet, createSnippet, deleteSnippet, getSnippetById, saveSnippet } from "../../services/snippet";
 import { createNewTag } from "../../services/tag";
 import closeIcon from "../../images/close.png";
 import plusIcon from "../../images/plus.png"
 import ConfirmationPopUp from "../ConfirmationPopUp/ConfirmationPopUp";
+import emptySnippet from "../../utils/constants/emptySnippet";
 
 const SnippetPopup = ({snippetId, setPopup}) => {
-    const [snippetData, setSnippetData] = useState(null);
+    const [snippetData, setSnippetData] = useState(emptySnippet);
     const [tagCreateOption, setTagCreateOption] = useState(false);
     const [tagToCreate, setTagToCreate] = useState({ name: "", color: "red" });
 
     useEffect(() => {
+        let snippet = null;
         const fetchSnippetData = async () => {
-            const snippet = await getSnippetById(snippetId);
+            snippet = await getSnippetById(snippetId);
             setSnippetData(snippet);
         }
-        fetchSnippetData();
-    }, [])
+        const createEmptySnippet = async () => {
+            snippet = await createSnippet(snippetId);
+            setSnippetData(snippet);
+        }
+        
+        if(snippetId !== 0) {
+            fetchSnippetData();
+        } else {
+            createEmptySnippet();
+        }
+    }, [snippetId])
 
     const handleClosePopup = () =>{
         setPopup(false);
@@ -34,7 +45,7 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                 if(tagAssociatedToSnippet) {
 
                 } else {
-                    window.alert("Erro ao criar tag para snippet");
+                    window.alert("Erro ao associar tag ao snippet");
                     // deletar snippet ou mudar endpoint
                 }
             } else {
@@ -45,7 +56,9 @@ const SnippetPopup = ({snippetId, setPopup}) => {
     }
 
     const handleSaveSnippet = async () => {
-        const snippetSaved = await saveSnippet(snippetData);
+        let snippetSaved = false;
+        snippetSaved = await saveSnippet(snippetData);
+
         if(snippetSaved){
             setPopup(false);
         } else {
@@ -84,9 +97,9 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                     </div>
                     <div className="rightPopUp">
                         <div>
-                            <h2>{snippetData.name}</h2>
-                            <h3>Data de criação:  <br/>{new Date(snippetData.creation_date).toLocaleDateString()} {new Date(snippetData.creation_date).toLocaleTimeString()}</h3>
-                            <h3>Data de modificação:  <br/>{new Date(snippetData.last_modification).toLocaleDateString()} {new Date(snippetData.last_modification).toLocaleTimeString()}</h3>
+                            <textarea type="text" value={snippetData.name} onChange={(e) => handleObjectInput({ name:'name', value: e.target.value })}/>
+                            <h3>Data de criação:  <br/>{new Date(snippetData.creation_date).toLocaleDateString()}</h3>
+                            <h3>Data de modificação:  <br/>{new Date(snippetData.last_modification).toLocaleDateString()}</h3>
 
                             <div className="tagContainerPopUp">
                                 {snippetData.tags.map((tag)=>{

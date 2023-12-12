@@ -55,6 +55,27 @@ export const saveSnippet = async (snippet) => {
     }
 }
 
+export const createSnippet = async (snippet) => {
+    let snippetCreated = null;
+    try {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type' : 'application/json'},
+            body: JSON.stringify(snippet)
+        }
+        const response = await fetch("http://localhost:8080/snippet" , requestOptions);
+        if (response.ok){
+            snippetCreated = await response.json();
+        } else {
+            throw new Error("Erro ao criar snippet");
+        }
+    } catch (error) {
+        console.log("Error: " + error);
+    } finally {
+        return snippetCreated;
+    }
+}
+
 export const deleteSnippet = async (snippetId) => {
     let snippetDeleted = false;
     try {
