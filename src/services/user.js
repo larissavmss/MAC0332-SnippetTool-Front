@@ -6,7 +6,7 @@ export const registerUser = async (userInfo) => {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(userInfo)
         }
-        const response = await fetch("http://localhost:8080/user", requestOptions);
+        const response = await fetch("http://localhost:8080/auth/register", requestOptions);
         if(response.ok){
             userRegistered = true;
         } else {
@@ -19,9 +19,23 @@ export const registerUser = async (userInfo) => {
     }
 }
 
-export const login = (loginInfo) => {
-    let user = null;
+export const loginUser = async (loginInfo) => {
+    let cookie = null;
     try {
-        const response = await fetch("http://localhost:8080/user")
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(loginInfo)
+        }
+        const response = await fetch("http://localhost:8080/auth/login", requestOptions);
+        if(response.ok){
+            cookie = await response.json();
+        } else {
+            throw new Error("Failed to login");
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return cookie;
     }
 }

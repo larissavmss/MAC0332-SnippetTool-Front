@@ -23,6 +23,12 @@ import {
     login,
     selectUser
 } from '../../features/auth/userSlice'
+
+import {
+    loginUser,
+    registerUser
+} from "../../services/user.js";
+
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'universal-cookie';
 
@@ -48,22 +54,61 @@ const Login = () => {
     const handleUserPasswordChange = (event) => {
         setUserPassword(event.target.value);
     }
-    const handleClickSignUp = (event) =>{
+    const handleClickSignUp = async (event) =>{
         if (action === "Login") {
             setAction("SignUp");
         } else {
             // Check if account already exists and, if not, create new account
             // Then, tell the home page to change the screen
+            
+            let userInfo = {
+                "username" : userName,
+                "password" : userPassword,
+                "email"    : userEmail
+            };
+
+            let userRegisted = await registerUser(userInfo);
+            
+            if(userRegisted){
+                let loginInfo = {
+                    "username" : userName,
+                    "password" : userPassword,
+                };
+
+                let cookie = await loginUser(loginInfo);
+                if(cookie === null){
+                    window.alert("Erro ao fazer login");
+                } else {
+                    dispatch(login({username: userName, token: cookie}))
+                    cookies.set('JSESSIONID', 'teste1', { path: '/', secure: false, httpOnly: true });
+                    window.location.href = '/';
+                }
+            }
+            
+            
+
         }
     }
-    const handleClickLogin = (event) =>{
+    const handleClickLogin = async (event) =>{
         if (action === "SignUp") {
             setAction("Login");
         } else {
             // TODO: Fazer chamada para o back e salvar token
-            dispatch(login({username: userEmail, token: "random"}))
-            cookies.set('JSESSIONID', 'teste1', { path: '/', secure: false, httpOnly: true });
-            window.location.href = '/';
+
+            let loginInfo = {
+                "username" : userName,
+                "password" : userPassword,
+            };
+
+            let cookie = await loginUser(loginInfo);
+
+            if(cookie === null){
+                window.alert("Erro ao fazer login");
+            } else {
+                dispatch(login({username: userName, token: cookie}))
+                cookies.set('JSESSIONID', 'teste1', { path: '/', secure: false, httpOnly: true });
+                window.location.href = '/';
+            }
         }
     }
 
@@ -76,6 +121,20 @@ const Login = () => {
             <Inputs>
                 {action === 'SignUp' && (
                     <Input>
+                        <EmailIcon 
+                            src={email_icon} 
+                            alt="Email Icon"
+                            style={{width: "30px"}}
+                        />
+                        <InsideInput 
+                            type="email"
+                            placeholder="E-mail"
+                            value={userEmail}
+                            onChange={handleUserEmailChange}
+                        />
+                    </Input>
+                )}
+                <Input>
                         <UserIcon 
                             src={usuario_icon} 
                             alt="User Icon"
@@ -88,20 +147,6 @@ const Login = () => {
                             onChange={handleUserNameChange}
                         />
                     </Input>
-                )}
-                <Input>
-                    <EmailIcon 
-                        src={email_icon} 
-                        alt="Email Icon"
-                        style={{width: "30px"}}
-                    />
-                    <InsideInput 
-                        type="email"
-                        placeholder="E-mail"
-                        value={userEmail}
-                        onChange={handleUserEmailChange}
-                    />
-                </Input>
                 <Input>
                     <PasswordIcon 
                         src={password_icon} 
