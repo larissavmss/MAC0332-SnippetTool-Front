@@ -8,28 +8,8 @@ import ConfirmationPopUp from "../ConfirmationPopUp/ConfirmationPopUp";
 import emptySnippet from "../../utils/constants/emptySnippet";
 import tagAdd from "../../images/tagAdd.png"
 
-const SnippetPopup = ({snippetId, setPopup}) => {
-    const [snippetData, setSnippetData] = useState(emptySnippet);
-    const [tagCreateOption, setTagCreateOption] = useState(false);
-    const [tagToCreate, setTagToCreate] = useState({ name: "", color: "red" });
-
-    useEffect(() => {
-        let snippet = null;
-        const fetchSnippetData = async () => {
-            snippet = await getSnippetById(snippetId);
-            setSnippetData(snippet);
-        }
-        const createEmptySnippet = async () => {
-            snippet = await createSnippet(snippetId);
-            setSnippetData(snippet);
-        }
-        
-        if(snippetId !== 0) {
-            fetchSnippetData();
-        } else {
-            createEmptySnippet();
-        }
-    }, [snippetId])
+const SnippetPopup = ({snippetData, setPopup, setSnippetData, userTags}) => {
+    const [ tagToAssociate, setTagToAssociate ] = useState({id:null});
 
     const handleClosePopup = () =>{
         setPopup(false);
@@ -45,25 +25,21 @@ const SnippetPopup = ({snippetId, setPopup}) => {
         else                        return "white"
     }
 
-    const handleTagCreate = (tag) => {
-        const createTag = async () => {
-            const tagCreated = await createNewTag(tag);
-            if(tagCreated != null){
-                setTagCreateOption(false);
-                snippetData.tags.push(tagCreated);
-                setTagToCreate({ name: "", color: "red" });
-                const tagAssociatedToSnippet = await associateTagToSnippet(snippetData.id, tagCreated.id);
-                if(tagAssociatedToSnippet) {
-
-                } else {
-                    window.alert("Erro ao associar tag ao snippet");
-                    // deletar snippet ou mudar endpoint
-                }
+    const handleAssociateTag = () => {
+        const associateTag = async () => {
+            const tagAssociatedToSnippet = await associateTagToSnippet(snippetData.id, tagToAssociate.id);
+            if(tagAssociatedToSnippet) {
+                snippetData.tags.push(tagToAssociate);
+                setTagToAssociate({id:null});
             } else {
-                window.alert("Erro ao criar Tag");
+                window.alert("Erro ao associar tag ao snippet");
             }
         }
-        createTag();
+        if(tagToAssociate.id){
+            associateTag();
+        } else {
+            window.alert("Selecione uma tag válida");
+        }
     }
 
     const handleSaveSnippet = async () => {
@@ -109,25 +85,27 @@ const SnippetPopup = ({snippetId, setPopup}) => {
                     <div className="rightPopUp">
                         <div>
                             <input className="titleInputPopUp" type="text" value={snippetData.name} onChange={(e) => handleObjectInput({ name:'name', value: e.target.value })}/>
-                            <h3>Data de criação:  <br/>{new Date(snippetData.creation_date).toLocaleDateString()}</h3>
-                            <h3>Data de modificação:  <br/>{new Date(snippetData.last_modification).toLocaleDateString()}</h3>
+                            <h3>Data de criação:  <br/>{new Date(snippetData.creationDate).toLocaleDateString()}</h3>
 
                             <h3 className="tagTitlePop">Tags</h3>
                             <div className="tagContainerPopUp">
-                                {snippetData.tags.map((tag)=>{
+                                {snippetData?.tags?.map((tag)=>{
                                     return ( 
-
-<div className="snippetTagPopUp" style={{"border": "1px solid "+ colorTag(tag.color)}} key={tag.id}>{tag.name} <img className="iconTagClose" src={closeIcon}/> </div> 
-
-)
+                                        <div className="snippetTagPopUp" style={{"border": "1px solid "+ colorTag(tag.color)}} key={tag.id}>{tag.name} <img className="iconTagClose" src={closeIcon}/> </div> 
+                                    )
                                 })}
                             </div>
                             
                             <div className="tagAddFlex">
-                                <select>
-                                    <option disabled selected>Associar tag</option>
+                                <select value={tagToAssociate.id} onChange={(e) => setTagToAssociate(e.target.value)}>
+                                    <option value={{id:null}} selected>Associar tag</option>
+                                    {userTags.map((tag) => {
+                                        return (
+                                            <option key={tag.id} value={tag}>{tag.name}</option>
+                                        )
+                                    })}
                                 </select>
-                                <button><img src={tagAdd}/></button>
+                                <button onClick={handleAssociateTag}><img src={tagAdd}/></button>
                             </div>
 
                         </div>

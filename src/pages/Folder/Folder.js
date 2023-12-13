@@ -61,7 +61,7 @@ const Folder = () => {
                     }
                     {folderName === "Default"? null : <img alt="delete" src={deleteIcon} onClick={handleDeleteFolder}/>}
                 </div>
-                <SnippetsContainer folderId={folderId}/>
+                <SnippetsContainer folderId={folderId} snippetData={snippetData} setSnippetData={setSnippetData}/>
             </div>
         </div>
     )
