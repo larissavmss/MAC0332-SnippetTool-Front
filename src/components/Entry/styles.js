@@ -15,12 +15,15 @@ export const EntryUpperPart =  styled.div`
     padding: 20px;
 `;
 
-export const MessageBoard =  styled.div`
-
+export const Header = styled.div`
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    background-color: black;
 `;
 
-export const DivisionLine =  styled.div`
-    background-color: red;
-    width: 5px;
-    border-radius: 20%;
+export const Logo = styled.img`
+  margin: 0 40px;
+  width: 90px;
+  height: auto;
 `;

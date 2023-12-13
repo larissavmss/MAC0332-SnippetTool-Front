@@ -51,7 +51,7 @@ const Login = () => {
     const handleClickSignUp = async (event) =>{
         if (action === "Login") {
             setAction("SignUp");
-        } else {
+        } else if (userName != '' && userPassword != '' && userEmail != '') {
             let userInfo = {
                 "username" : userName,
                 "password" : userPassword,
@@ -82,7 +82,7 @@ const Login = () => {
     const handleClickLogin = async (event) =>{
         if (action === "SignUp") {
             setAction("Login");
-        } else {
+        } else if (userName != '' && userPassword != '') {
             let loginInfo = {
                 "username" : userName,
                 "password" : userPassword,
@@ -148,7 +148,7 @@ const Login = () => {
                     />
                 </Input>
             </Inputs>
-            <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
+            {/* <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword> */}
             
             {action === 'SignUp' && (
                 <SubmitContainer>
