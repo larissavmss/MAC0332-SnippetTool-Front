@@ -7,12 +7,14 @@ import { deleteFolder, editFolder, getFolderById } from '../../services/folder';
 import editIcon from "../../images/pen.png";
 import confirmIcon from "../../images/confirm.png";
 import deleteIcon from "../../images/delete.png";
+import emptySnippet from '../../utils/constants/emptySnippet';
 
 const Folder = () => {
     const { folderId } = useParams();
     const [ openMenu, setOpenMenu ] = useState(false);
     const [ folderName, setFolderName ] = useState("");
     const [ allowEditFolder, setAllowEditFolder ] = useState(false);
+    const [snippetData, setSnippetData] = useState(emptySnippet);
 
     useEffect(() => {
         const fetchFolderName = async () => {
@@ -54,10 +56,10 @@ const Folder = () => {
                         </div> :
                         <div>
                             <h1>{folderName}</h1>
-                            <img src={editIcon} alt={"edit"} onClick={()=>{setAllowEditFolder(true)}}/>
+                            {folderName === "Default"? null : <img src={editIcon} alt={"edit"} onClick={()=>{setAllowEditFolder(true)}}/>}
                         </div>
                     }
-                    <img alt="delete" src={deleteIcon} onClick={handleDeleteFolder}/>
+                    {folderName === "Default"? null : <img alt="delete" src={deleteIcon} onClick={handleDeleteFolder}/>}
                 </div>
                 <SnippetsContainer folderId={folderId}/>
             </div>
