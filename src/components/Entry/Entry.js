@@ -1,26 +1,29 @@
 import {
     EntryContainer,
     EntryUpperPart,
-    MessageBoard,
-    DivisionLine
+    Logo,
+    Header,
 } from "./styles";
 
 import Login from "../Login/Login"
 import Footer from "../Footer/Footer"
+import logo from "../../images/logobranca.png";
 
 
 const Entry = () => {
     return (
         <EntryContainer>
+            <Header>
+                <Logo src={logo} alt="Ícone ST" />
+            </Header>
             <EntryUpperPart>
-                <MessageBoard>
+                {/* <MessageBoard>
                     Blah blah blah, texto texto
                 </MessageBoard>
 
                 <DivisionLine>
 
-                </DivisionLine>
-                
+                </DivisionLine> */}
                 <Login/>
             </EntryUpperPart>
 

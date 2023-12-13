@@ -20,11 +20,15 @@ import email_icon from "../../images/email_icon.png";
 import password_icon from "../../images/password_icon.png";
 import usuario_icon from "../../images/black_user_icon.png";
 import {
-    login,
-    selectUser
+    login
 } from '../../features/auth/userSlice'
-import { useDispatch, useSelector } from "react-redux";
-import Cookies from 'universal-cookie';
+
+import {
+    loginUser,
+    registerUser
+} from "../../services/user.js";
+
+import { useDispatch } from "react-redux";
 
 
 const Login = () => {
@@ -32,11 +36,7 @@ const Login = () => {
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
-    
-    const cookies = new Cookies();
 
-    const user = useSelector(selectUser);
-    console.log(user);
     const dispatch = useDispatch();
 
     const handleUserNameChange = (event) => {
@@ -48,22 +48,54 @@ const Login = () => {
     const handleUserPasswordChange = (event) => {
         setUserPassword(event.target.value);
     }
-    const handleClickSignUp = (event) =>{
+    const handleClickSignUp = async (event) =>{
         if (action === "Login") {
             setAction("SignUp");
-        } else {
-            // Check if account already exists and, if not, create new account
-            // Then, tell the home page to change the screen
+        } else if (userName != '' && userPassword != '' && userEmail != '') {
+            let userInfo = {
+                "username" : userName,
+                "password" : userPassword,
+                "email"    : userEmail
+            };
+
+            let userRegisted = await registerUser(userInfo);
+            
+            if(userRegisted){
+                let loginInfo = {
+                    "username" : userName,
+                    "password" : userPassword,
+                };
+
+                let logged = await loginUser(loginInfo);
+                if(logged === null){
+                    window.alert("Erro ao fazer login");
+                } else {
+                    dispatch(login({username: userName}))
+                    window.location.href = '/';
+                }
+            }
+            
+            
+
         }
     }
-    const handleClickLogin = (event) =>{
+    const handleClickLogin = async (event) =>{
         if (action === "SignUp") {
             setAction("Login");
-        } else {
-            // TODO: Fazer chamada para o back e salvar token
-            dispatch(login({username: userEmail, token: "random"}))
-            cookies.set('JSESSIONID', 'teste1', { path: '/', secure: false, httpOnly: true });
-            window.location.href = '/';
+        } else if (userName != '' && userPassword != '') {
+            let loginInfo = {
+                "username" : userName,
+                "password" : userPassword,
+            };
+
+            let logged = await loginUser(loginInfo);
+
+            if(logged === null){
+                window.alert("Erro ao fazer login");
+            } else {
+                dispatch(login({username: userName}))
+                window.location.href = '/';
+            }
         }
     }
 
@@ -76,6 +108,20 @@ const Login = () => {
             <Inputs>
                 {action === 'SignUp' && (
                     <Input>
+                        <EmailIcon 
+                            src={email_icon} 
+                            alt="Email Icon"
+                            style={{width: "30px"}}
+                        />
+                        <InsideInput 
+                            type="email"
+                            placeholder="E-mail"
+                            value={userEmail}
+                            onChange={handleUserEmailChange}
+                        />
+                    </Input>
+                )}
+                <Input>
                         <UserIcon 
                             src={usuario_icon} 
                             alt="User Icon"
@@ -88,20 +134,6 @@ const Login = () => {
                             onChange={handleUserNameChange}
                         />
                     </Input>
-                )}
-                <Input>
-                    <EmailIcon 
-                        src={email_icon} 
-                        alt="Email Icon"
-                        style={{width: "30px"}}
-                    />
-                    <InsideInput 
-                        type="email"
-                        placeholder="E-mail"
-                        value={userEmail}
-                        onChange={handleUserEmailChange}
-                    />
-                </Input>
                 <Input>
                     <PasswordIcon 
                         src={password_icon} 
@@ -116,7 +148,7 @@ const Login = () => {
                     />
                 </Input>
             </Inputs>
-            <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword>
+            {/* <ForgotPassaword>Lost Password? <span>Click here</span></ForgotPassaword> */}
             
             {action === 'SignUp' && (
                 <SubmitContainer>
