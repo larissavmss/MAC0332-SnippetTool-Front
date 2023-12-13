@@ -10,6 +10,7 @@ import greenTagIcon from "../../images/tag_verde.png"
 import orangeTagIcon from "../../images/tag_laranja.png"
 import purpleTagIcon from "../../images/tag_roxo.png"
 import whiteTagIcon from "../../images/tag_branco.png"
+import { Link } from "react-router-dom";
 
 const Tags = () => {
     
@@ -27,9 +28,13 @@ const Tags = () => {
     }, [])
 
     const handleNewTag = async () => {
-        const tagCreated = await createNewTag(tag);
-        if(tagCreated) {
-            window.location.reload(false);
+        if(tag.color != null){
+            const tagCreated = await createNewTag(tag);
+            if(tagCreated) {
+                window.location.reload(false);
+            }
+        } else {
+            window.alert("Selecione uma cor");
         }
     }
 
@@ -43,14 +48,11 @@ const Tags = () => {
         else return whiteTagIcon
     }
 
-    const handleEditTag = async (tagToEdit) => {
-        await editTag(tagToEdit);
-        window.location.reload(false);
-    }
-
-    const handleDeleteTag = async (tagId) => {
-        await deleteTag(tagId);
-        window.location.reload(false);
+    const handleChangeColor = (color) => {
+        setTag({
+            ...tag,
+            color: color
+        })
     }
 
     return(
@@ -61,9 +63,9 @@ const Tags = () => {
                 <div className="titleAndAdd">
                     <h1>Tags</h1>
                     <div className="flexAdd">
-                        <input placeholder="Nome da tag" className="addInputTag"/>
-                        <select className="addSelectTag">
-                            <option disabled>Escolha cor</option>
+                        <input placeholder="Nome da tag" className="addInputTag" value={tag.name} onChange={(e) => setTag({...tag, name: e.target.value})}/>
+                        <select className="addSelectTag" onChange={(e) => handleChangeColor(e.target.value)}>
+                            <option value={null} >Escolha cor</option>
                             <option value="RED">Vermelho</option>
                             <option value="BLUE">Azul</option>
                             <option value="YELLOW">Amarelo</option>
@@ -71,17 +73,17 @@ const Tags = () => {
                             <option value="ORANGE">Laranja</option>
                             <option value="PURPLE">Roxo</option>
                         </select>
-                        <div className="addButtonTag"><img src={tagAdd}/></div>
+                        <div className="addButtonTag" onClick={handleNewTag}><img src={tagAdd}/></div>
                     </div>
                 </div>
 
                 <div className="tagWrap">
                     {tags.map((tag) => {
                         return(
-                            <div className="tagContainer">
-                                <img src={selectColor(tag.color)}/>
+                            <Link className="tagContainer" to={`/tag/${tag.id}`} style={{ textDecoration: "none" }}>
+                                <img alt={"Tag with color" + tag.color} src={selectColor(tag.color)}/>
                                 <h3>{tag.name}</h3>
-                            </div>
+                            </Link>
                         )
                     })}
 

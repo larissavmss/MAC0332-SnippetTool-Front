@@ -7,6 +7,7 @@ import Main from './pages/Main/Main';
 import Tags from './pages/Tags/Tags';
 import Folders from './pages/Folders/Folders';
 import Folder from './pages/Folder/Folder';
+import Tag from './pages/Tag/Tag';
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/user" element={<Header />} />
         <Route path="/" element={<Main />} />
         <Route path='/tags' element={<Tags />} />
+        <Route path='/tag/:tagId' element={<Tag />} />
         <Route path='/folders' element={<Folders />} />
         <Route path="/folder/:folderId" element={<Folder />} />
       </Routes>

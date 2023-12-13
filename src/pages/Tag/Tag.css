@@ -1,0 +1,51 @@
+.tagInfo h1 {
+    color: rgb(254, 222, 222);
+    margin: 0;
+    user-select: none;
+    font-size: 1.75em;
+}
+
+.flexTagInfo input{
+    font-size: 1.75em;
+    color: white;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    font-family: 'FiraSans';
+    font-weight: bolder;
+    margin-top: 1px;
+}
+
+
+.tagInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+    margin: 30px auto 0 auto;
+}
+
+.tagInfo > button{
+    height: 40px;
+    background-color: #ef273e;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-weight: bolder;
+}
+
+.flexTagInfo{
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flexTagInfo img{
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+
