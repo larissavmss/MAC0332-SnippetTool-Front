@@ -4,14 +4,13 @@ import {DropdownMenu, DropdownOption} from "./styles";
 import userMenuOptions from '../../../utils/constants/userMenuOptions';
 import { logout } from '../../../features/auth/userSlice';
 import { useDispatch } from 'react-redux';
-import Cookies from 'js-cookie';
 
 const LinkDropdown = ({isOpen}) => {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
         dispatch(logout());
-        Cookies.remove('JSESSIONID', { path: '/' });
+        document.cookie = `JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
         window.location.href = '/entry';
     }
 

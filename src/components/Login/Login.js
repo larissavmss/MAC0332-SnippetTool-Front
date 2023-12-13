@@ -20,8 +20,7 @@ import email_icon from "../../images/email_icon.png";
 import password_icon from "../../images/password_icon.png";
 import usuario_icon from "../../images/black_user_icon.png";
 import {
-    login,
-    selectUser
+    login
 } from '../../features/auth/userSlice'
 
 import {
@@ -29,8 +28,7 @@ import {
     registerUser
 } from "../../services/user.js";
 
-import { useDispatch, useSelector } from "react-redux";
-import Cookies from 'universal-cookie';
+import { useDispatch } from "react-redux";
 
 
 const Login = () => {
@@ -38,11 +36,7 @@ const Login = () => {
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
-    
-    const cookies = new Cookies();
 
-    const user = useSelector(selectUser);
-    console.log(user);
     const dispatch = useDispatch();
 
     const handleUserNameChange = (event) => {
@@ -58,9 +52,6 @@ const Login = () => {
         if (action === "Login") {
             setAction("SignUp");
         } else {
-            // Check if account already exists and, if not, create new account
-            // Then, tell the home page to change the screen
-            
             let userInfo = {
                 "username" : userName,
                 "password" : userPassword,
@@ -75,12 +66,11 @@ const Login = () => {
                     "password" : userPassword,
                 };
 
-                let cookie = await loginUser(loginInfo);
-                if(cookie === null){
+                let logged = await loginUser(loginInfo);
+                if(logged === null){
                     window.alert("Erro ao fazer login");
                 } else {
-                    dispatch(login({username: userName, token: cookie}))
-                    cookies.set('JSESSIONID', 'teste1', { path: '/', secure: false, httpOnly: true });
+                    dispatch(login({username: userName}))
                     window.location.href = '/';
                 }
             }
@@ -93,20 +83,17 @@ const Login = () => {
         if (action === "SignUp") {
             setAction("Login");
         } else {
-            // TODO: Fazer chamada para o back e salvar token
-
             let loginInfo = {
                 "username" : userName,
                 "password" : userPassword,
             };
 
-            let cookie = await loginUser(loginInfo);
+            let logged = await loginUser(loginInfo);
 
-            if(cookie === null){
+            if(logged === null){
                 window.alert("Erro ao fazer login");
             } else {
-                dispatch(login({username: userName, token: cookie}))
-                cookies.set('JSESSIONID', 'teste1', { path: '/', secure: false, httpOnly: true });
+                dispatch(login({username: userName}))
                 window.location.href = '/';
             }
         }

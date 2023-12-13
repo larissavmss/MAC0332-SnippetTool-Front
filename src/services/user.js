@@ -4,7 +4,8 @@ export const registerUser = async (userInfo) => {
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify(userInfo)
+            body: JSON.stringify(userInfo),
+            credentials: "include"
         }
         const response = await fetch("http://localhost:8080/auth/register", requestOptions);
         if(response.ok){
@@ -20,22 +21,23 @@ export const registerUser = async (userInfo) => {
 }
 
 export const loginUser = async (loginInfo) => {
-    let cookie = null;
+    let logged = false;
     try {
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify(loginInfo)
+            body: JSON.stringify(loginInfo),
+            credentials: "include"
         }
         const response = await fetch("http://localhost:8080/auth/login", requestOptions);
         if(response.ok){
-            cookie = await response.json();
+            logged = true;
         } else {
             throw new Error("Failed to login");
         }
     } catch (error) {
         console.error(error);
     } finally {
-        return cookie;
+        return logged;
     }
 }
