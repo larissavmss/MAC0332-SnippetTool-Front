@@ -48,16 +48,16 @@ const Folder = () => {
             <div className={`content ${openMenu ? 'content-menu-aberto' : ''}`}>
                 <div className="folderInfo">
                     {allowEditFolder ? 
-                        <div>
+                        <div className='flexFolderInfo'>
                             <input value={folderName} onChange={(e)=>{setFolderName(e.target.value)}}/>
                             <img src={confirmIcon} alt="confirm" onClick={handleEditFolder}/>
                         </div> :
-                        <div>
+                        <div className='flexFolderInfo'>
                             <h1>{folderName}</h1>
                             <img src={editIcon} alt={"edit"} onClick={()=>{setAllowEditFolder(true)}}/>
                         </div>
                     }
-                    <img alt="delete" src={deleteIcon} onClick={handleDeleteFolder}/>
+                    <button>Apagar pasta</button>
                 </div>
                 <SnippetsContainer folderId={folderId}/>
             </div>
