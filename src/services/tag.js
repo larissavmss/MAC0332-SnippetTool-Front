@@ -1,37 +1,62 @@
 export const createNewTag = async (tag) => {
-    let snippetCreated = null;
+    let tagCreated = false;
     try {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
             body: JSON.stringify(tag)
         };
         const response = fetch("http://localhost:8080/tag", requestOptions);
         if(response.ok){
-            snippetCreated = await response.json();
+            tagCreated = true;
         } else {    
             throw new Error("Falha ao criar tag");
         }
     } catch (error) {
         console.log("Error: " + error);
     } finally {
-        return snippetCreated;
+        return tagCreated;
     }
 }
 
 export const getTags = async () => {
-    let snippets = [];
+    let tags = [];
     try {
-        const response = await fetch("http://localhost:8080/tag");
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include'
+        };
+        const response = await fetch("http://localhost:8080/tag", requestOptions);
         if (response.ok){
-            snippets = await response.json();
+            tags = await response.json();
         } else {
             throw new Error("Failed to fetch tags");
         }
     } catch (error) {
         console.error("Error: " + error);
     } finally {
-        return snippets;
+        return tags;
+    }
+}
+
+export const getTag = async (tagId) => {
+    let tag = null;
+    try {
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include'
+        };
+        const response = await fetch("http://localhost:8080/tag/" + tagId, requestOptions);
+        if (response.ok){
+            tag = await response.json();
+        } else {
+            throw new Error("Failed to fetch tags");
+        }
+    } catch (error) {
+        console.error("Error: " + error);
+    } finally {
+        return tag;
     }
 }
 
@@ -41,7 +66,8 @@ export const editTag = async (tag) => {
         const requestOptions = {
             "method": "put",
             "headers": {"Content-Type": "application/json"},
-            "body": JSON.stringify(tag)
+            "body": JSON.stringify(tag),
+            "credentials": 'include'
         }
         const response = await fetch("http://localhost:8080/tag/" + tag.id, requestOptions);
         if(response.ok){
@@ -62,7 +88,8 @@ export const deleteTag = async (tagId) => {
         const requestOptions = {
             "method": "delete",
             "headers": {"Content-Type": "application/json"},
-            "body": ""
+            "body": "",
+            "credentials": 'include'
         }
         const response = await fetch("http://localhost:8080/tag/" + tagId, requestOptions);
         if(response.ok){

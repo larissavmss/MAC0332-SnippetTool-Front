@@ -1,7 +1,11 @@
 export const getAllFolders = async () => {
     let folders = [];
     try {
-        const response = await fetch("http://localhost:8080/folder");
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include'
+        }
+        const response = await fetch("http://localhost:8080/folder", requestOptions);
         if(response.ok){
             folders = await response.json();
         } else {
@@ -20,7 +24,8 @@ export const createNewFolder = async (foldername) => {
         const requestOptions = {
             "method": "post",
             "headers": {"Content-Type": "application/json"},
-            "body": JSON.stringify({"name": foldername})
+            "body": JSON.stringify({"name": foldername}),
+            "credentials": 'include'
         }
         const response = await fetch("http://localhost:8080/folder", requestOptions);
         if(response.ok){
@@ -41,7 +46,8 @@ export const editFolder = async (folderName, folderId) => {
         const requestOptions = {
             "method": "put",
             "headers": {"Content-Type": "application/json"},
-            "body": JSON.stringify({"name": folderName})
+            "body": JSON.stringify({"name": folderName}),
+            "credentials": 'include'
         }
         const response = await fetch("http://localhost:8080/folder/" + folderId, requestOptions);
         if(response.ok){
@@ -61,7 +67,8 @@ export const deleteFolder = async (folderId) => {
     try {
         const requestOptions = {
             method: "DELETE",
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
         }
         const response = await fetch("http://localhost:8080/folder/" + folderId, requestOptions);
         if(response.ok){
@@ -79,7 +86,11 @@ export const deleteFolder = async (folderId) => {
 export const getFolderById = async (folderId) => {
     let folder = {name: ""};
     try {
-        const response = await fetch("http://localhost:8080/folder/"+folderId);
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include'
+        }
+        const response = await fetch("http://localhost:8080/folder/"+folderId, requestOptions);
         if(response.ok){
             folder = await response.json();
         } else {
@@ -89,5 +100,45 @@ export const getFolderById = async (folderId) => {
         console.error("Error: " + error);
     } finally {
         return folder;
+    }
+}
+
+export const getFolderByName = async (folderName) => {
+    let folder = [{name: "", id: null}];
+    try {
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include'
+        }
+        const response = await fetch("http://localhost:8080/folder/filtro/"+folderName, requestOptions);
+        if(response.ok){
+            folder = await response.json();
+        } else {
+            throw new Error("Failed to fetch folder  " + folderName);
+        }
+    } catch (error) {
+        console.error("Error: " + error);
+    } finally {
+        return folder;
+    }
+}
+
+export const getUserSnippets = async (folderId, tagId = null) => {
+    let snippets = [];
+    const requestOptions = {
+        method: 'GET',
+        credentials: 'include'
+    }
+    try{
+        const response = await fetch(`http://localhost:8080/folder/${folderId}/snippets` + (tagId? ("?tagId=" + tagId) : ""), requestOptions); //TODO: trocar a url da api para uma variavel global
+        if(response.ok){
+            snippets = await response.json();
+        } else {
+            throw new Error("Falha ao buscar snippets");
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return snippets;
     }
 }
