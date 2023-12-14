@@ -2,22 +2,22 @@ import styled from "styled-components";
 import { grey } from "../../utils/constants/constants";
 
 export const LoginContainer = styled.div`
-    background-color: black;
+    background-color: #272823;
+    border: 1px solid #666;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
-    border-radius: 5%;
-    width: 25%;
-    height: 70%;
+    padding: 10px 30px;
+    border-radius: 10px;
+    width: 40%;
+    height: 500px;
 `
 export const Header = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10%;
-    margin-top: 30px;
+    margin: 30px 0;
 `
 export const Text = styled.div`
     color: red;
@@ -31,28 +31,31 @@ export const Underline = styled.div`
     border-radius: 9px;
 `
 export const Inputs = styled.div`
-    margin-top: 55px;
     display: flex;
+    height: 250px;
+    width: 100%;
     flex-direction: column;
-    gap: 25px;
 `
 export const Input = styled.div`
     display:flex;
     align-items: center;
-    margin: auto;
+    margin: 10px auto;
     width: 100%;
-    height: 80px;
-    background: #eaeaea;
-    border-radius: 6px;
+    height: 60px;
+    border: 2px solid #555;
+    border-radius: 5px;
 `
 export const UserIcon = styled.img`
-    margin: 0px 30px;
+    margin: 0px 15px;
+    width: 20px;
 `
 export const EmailIcon = styled.img`
-    margin: 0px 30px;
+    margin: 0px 15px;
+    width: 20px;
 `
 export const PasswordIcon = styled.img`
-    margin: 0px 30px;
+    margin: 0px 15px;
+    width: 20px;
 `
 export const InsideInput = styled.input`
     height: 50px;
@@ -70,9 +73,9 @@ export const ForgotPassaword = styled.div`
 `
 export const SubmitContainer = styled.div`
     display: flex;
-    width: 90%;
-    gap: 30px;
-    margin: 60px auto;
+    width: 100%;
+    gap: 5%;
+    margin: 30px auto;
 `
 export const SubmitSelected = styled.div`
     display: flex;
@@ -82,7 +85,7 @@ export const SubmitSelected = styled.div`
     height: 59px;
     color: #fff;
     background: red;
-    border-radius: 50px;
+    border-radius: 5px;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
@@ -95,7 +98,7 @@ export const SubmitUnselected = styled.div`
     height: 59px;
     color: #fff;
     background: grey;
-    border-radius: 50px;
+    border-radius: 5px;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
