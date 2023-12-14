@@ -12,8 +12,6 @@ import {
     PasswordIcon,
     InsideInput,
     Text,
-    Underline,
-    ForgotPassaword
 } from "./styles";
 
 import email_icon from "../../images/email_icon.png";
@@ -103,7 +101,6 @@ const Login = () => {
         <LoginContainer>
             <Header>
                 <Text> {action}</Text>
-                <Underline></Underline>
             </Header>
             <Inputs>
                 {action === 'SignUp' && (
@@ -111,7 +108,6 @@ const Login = () => {
                         <EmailIcon 
                             src={email_icon} 
                             alt="Email Icon"
-                            style={{width: "30px"}}
                         />
                         <InsideInput 
                             type="email"
@@ -125,7 +121,6 @@ const Login = () => {
                         <UserIcon 
                             src={usuario_icon} 
                             alt="User Icon"
-                            style={{width: "30px"}}
                         />
                         <InsideInput 
                             type="text"
@@ -138,7 +133,6 @@ const Login = () => {
                     <PasswordIcon 
                         src={password_icon} 
                         alt=""
-                        style={{width: "30px"}}
                     />
                     <InsideInput 
                         type="password"
@@ -152,21 +146,21 @@ const Login = () => {
             
             {action === 'SignUp' && (
                 <SubmitContainer>
-                    <SubmitSelected onClick={handleClickSignUp}>
-                        Sign Up
-                    </SubmitSelected>
                     <SubmitUnselected onClick={handleClickLogin}>
-                        Login
+                        Fazer login
                     </SubmitUnselected>
+                    <SubmitSelected onClick={handleClickSignUp}>
+                        Registrar
+                    </SubmitSelected>
                 </SubmitContainer>
             )}
             {action === 'Login' && (
                 <SubmitContainer>
                     <SubmitUnselected onClick={handleClickSignUp}>
-                        Sign Up
+                        Fazer cadastro
                     </SubmitUnselected>
                     <SubmitSelected onClick={handleClickLogin}>
-                        Login
+                        Entrar
                     </SubmitSelected>
                 </SubmitContainer>
             )}

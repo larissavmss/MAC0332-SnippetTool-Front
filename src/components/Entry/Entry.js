@@ -3,6 +3,8 @@ import {
     EntryUpperPart,
     Logo,
     Header,
+    MessageBoard,
+    LogoMessage
 } from "./styles";
 
 import Login from "../Login/Login"
@@ -17,13 +19,11 @@ const Entry = () => {
                 <Logo src={logo} alt="Ícone ST" />
             </Header>
             <EntryUpperPart>
-                {/* <MessageBoard>
-                    Blah blah blah, texto texto
+                <MessageBoard>
+                <LogoMessage src={logo} alt="Ícone ST"/>
+                    O Snippet Tool é uma ferramenta criada para ajudar desenvolvedores a armazenar e organizar seus trechos de código de modo a reutilizá-los de forma simples. Armazene seu código e pesquise por tags, diretórios e palavras chaves. Crie sua conta e experimente as facilidades que o sistema pode te oferecer.
+
                 </MessageBoard>
-
-                <DivisionLine>
-
-                </DivisionLine> */}
                 <Login/>
             </EntryUpperPart>
 
