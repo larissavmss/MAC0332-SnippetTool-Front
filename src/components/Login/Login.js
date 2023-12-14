@@ -48,7 +48,7 @@ const Login = () => {
     const handleUserPasswordChange = (event) => {
         setUserPassword(event.target.value);
     }
-    const handleClickSignUp = async (event) =>{
+    const handleClickSignUp = async () =>{
         if (action === "Login") {
             setAction("SignUp");
         } else if (userName != '' && userPassword != '' && userEmail != '') {
@@ -73,16 +73,16 @@ const Login = () => {
                     dispatch(login({username: userName}))
                     window.location.href = '/';
                 }
+            } else {
+                window.alert("Email ou usuario já cadastrado")
             }
-            
-            
 
         }
     }
-    const handleClickLogin = async (event) =>{
+    const handleClickLogin = async () =>{
         if (action === "SignUp") {
             setAction("Login");
-        } else if (userName != '' && userPassword != '') {
+        } else if (userName !== '' && userPassword !== '') {
             let loginInfo = {
                 "username" : userName,
                 "password" : userPassword,
