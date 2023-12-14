@@ -1,0 +1,247 @@
+.backShadow{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    z-index: 10000;
+    background-color: #2b2b2bac;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+}
+
+
+.closeIcon{
+    background: none;
+    border: none;
+    position: absolute;
+    left: 96%;
+    top: 3vh;
+    outline: none;
+    cursor: pointer;
+}
+
+.closeIcon > img{
+    width: 15px;
+}
+
+.additionButton{
+    border-radius: 10px;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    cursor: pointer;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.additionButton > img{
+    width: 15px;
+}
+
+.popupSnippet{
+    position: fixed;
+    top: 10vh;
+    left: 15%;
+    border-radius: 20px;
+    height: 80vh;
+    width: 70%;
+    background-color: #1b1c19;
+    border: 1px solid #1b1c19;
+    box-shadow: 0 0 50px #1b1c19;
+    display: flex;
+    /* padding: 20px; */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.snippetErrorDisplay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.snippetDisplay{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.leftPopUp{
+    width: 70%;
+    margin-right: 7px;
+}
+
+.leftPopUp > textarea{
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    outline: none;
+    background:none;
+    border: none;
+    color: white;
+    font-size: 1.1em;
+    line-height: 1.7em;
+    resize: none;
+    scrollbar-width: thin;
+}
+
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+textarea::-webkit-scrollbar-track {
+    margin: 8px 0;
+    background-color: #1b1c19;
+}
+
+
+.columnFlexPopUP{
+    display: flex;
+    flex-direction: column;
+}
+
+.columnFlexPopUP > button{
+    height: 40px;
+    background: none;
+    border: none;
+    color: white;
+    border: 1px solid #ef273e;
+    font-size: 1em;
+    border-radius: 10px;
+    margin: 8px 0;
+    cursor: pointer;
+    transition: 0.25s;
+    font-weight: bolder;
+}
+
+.tagTitlePop{
+    margin: 20px 0 0 0;
+}
+
+
+.tagAddFlex{
+    width: 100%;
+    margin-right: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-top: 10px;
+}
+.tagAddFlex img{
+    width: 15px;
+}
+.tagAddFlex select{
+    background-color: #1b1c19;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    margin: 0;
+    border-radius: 5px;
+    height: 30px;
+}
+.tagAddFlex button{
+    background-color: #ef273e;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+
+
+.tagContainerPopUp{
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.columnFlexPopUP > button:hover{
+    transition: 0.25s;
+    background-color: #ef273e;
+}
+
+.titleInputPopUp{
+    background: transparent;
+    border: none;
+    color: white;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    height: 40px;
+    width: 100%;
+    margin-top: 35px;
+    font-family: 'FiraSans';
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.rightPopUp{
+    text-align: left;
+    width: 30%;
+    padding: 20px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    border-left: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.snippetTagInput{
+    background-color: transparent;
+    border: 1px solid #ef273e;
+    border-radius: 7px;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 1em;
+    height: 30px;
+    color: white;
+    font-family: FiraSans;
+
+    
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.snippetTagPopUp{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 5px;
+    margin: 5px 5px 5px 0;
+    font-size: 0.9em;
+}
+
+
+.iconTagClose{
+    width: 8px;
+    height: 8px;
+    margin-left: 5px;
+}

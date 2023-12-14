@@ -1,0 +1,14 @@
+.mainPage{
+    min-height: 100vh;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.content{
+    transition: margin-left 0.3s;
+}
+
+.content-menu-aberto{
+    margin-left: 15%;
+}

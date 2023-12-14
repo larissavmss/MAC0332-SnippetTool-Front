@@ -1,0 +1,32 @@
+.confirmationPopUp{
+    position: fixed;
+    background-color: white;
+    border-radius: 20px;
+    height: 40vh;
+    width: 25%;
+    left: 37.5%;
+    top: 30vh;
+    box-shadow: 0 0 50px #1b1c19;
+    background-color: #1b1c19;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttonContainer > button{
+    height: 40px;
+    width: 120px;
+    background: none;
+    border: none;
+    border: 1px solid #ffffff;
+    color: white;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+}
