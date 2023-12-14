@@ -7,6 +7,7 @@ import editIcon from "../../images/pen.png";
 import confirmIcon from "../../images/confirm.png";
 import emptySnippet from '../../utils/constants/emptySnippet';
 import { deleteTag, editTag, getTag } from '../../services/tag';
+import { getTagSnippets } from '../../services/snippet';
 
 const Tag = () => {
     const { tagId } = useParams();
@@ -14,6 +15,7 @@ const Tag = () => {
     const [ tag, setTag ] = useState({name:"", color: null});
     const [ allowEditTag, setAllowEditTag ] = useState(false);
     const [ snippetData, setSnippetData ] = useState(emptySnippet);
+    const [ filter, setFilter ] = useState("");
 
     useEffect(() => {
         const fetchTagName = async () => {
@@ -27,10 +29,15 @@ const Tag = () => {
         fetchTagName();
     },[])
 
+    const handleSearch = async (filter) => {
+        setFilter(filter);
+    }
+
     const handleEditTag = async () => {
         const tagEdited = await editTag(tag);
         if(tagEdited) {
             setAllowEditTag(false);
+            window.location.href = '/tag/'+tagId;
         }
     }
 
@@ -48,6 +55,7 @@ const Tag = () => {
             <Header
                 openMenu={openMenu} 
                 setOpenMenu={setOpenMenu}
+                handleSearch={handleSearch}
             />
 
             <div className={`content ${openMenu ? 'content-menu-aberto' : ''}`}>
@@ -64,7 +72,7 @@ const Tag = () => {
                     }
                     <button onClick={handleDeleteTag}>Apagar Tag</button>
                 </div>
-                <SnippetsContainer tagId={tagId} snippetData={snippetData} setSnippetData={setSnippetData}/>
+                <SnippetsContainer filter={filter} id={tagId} getUserSnippets={getTagSnippets} snippetData={snippetData} setSnippetData={setSnippetData} tagPage={true}/>
             </div>
         </div>
     )

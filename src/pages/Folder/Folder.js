@@ -6,15 +6,16 @@ import { useEffect, useState } from "react";
 import { deleteFolder, editFolder, getFolderById } from '../../services/folder';
 import editIcon from "../../images/pen.png";
 import confirmIcon from "../../images/confirm.png";
-import deleteIcon from "../../images/delete.png";
 import emptySnippet from '../../utils/constants/emptySnippet';
+import { getFolderSnippets } from '../../services/snippet';
 
 const Folder = () => {
     const { folderId } = useParams();
     const [ openMenu, setOpenMenu ] = useState(false);
     const [ folderName, setFolderName ] = useState("");
     const [ allowEditFolder, setAllowEditFolder ] = useState(false);
-    const [snippetData, setSnippetData] = useState(emptySnippet);
+    const [ snippetData, setSnippetData ] = useState(emptySnippet);
+    const [ filter, setFilter ] = useState("");
 
     useEffect(() => {
         const fetchFolderName = async () => {
@@ -23,6 +24,10 @@ const Folder = () => {
         }
         fetchFolderName();
     },[])
+
+    const handleSearch = async (filter) => {
+        setFilter(filter);
+    }
 
     const handleEditFolder = async () => {
         const folderEdited = await editFolder(folderName, folderId);
@@ -45,6 +50,7 @@ const Folder = () => {
             <Header
                 openMenu={openMenu} 
                 setOpenMenu={setOpenMenu}
+                handleSearch={handleSearch}
             />
 
             <div className={`content ${openMenu ? 'content-menu-aberto' : ''}`}>
@@ -61,7 +67,7 @@ const Folder = () => {
                     }
                     {folderName === "Default"? null :<button onClick={handleDeleteFolder}>Apagar Pasta</button>}
                 </div>
-                <SnippetsContainer folderId={folderId} snippetData={snippetData} setSnippetData={setSnippetData}/>
+                <SnippetsContainer filter={filter} id={folderId} snippetData={snippetData} setSnippetData={setSnippetData} getUserSnippets={getFolderSnippets}/>
             </div>
         </div>
     )

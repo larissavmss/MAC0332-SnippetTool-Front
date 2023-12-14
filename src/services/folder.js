@@ -1,11 +1,11 @@
-export const getAllFolders = async () => {
+export const getAllFolders = async (filter="") => {
     let folders = [];
     try {
         const requestOptions = {
             method: 'GET',
             credentials: 'include'
         }
-        const response = await fetch("http://localhost:8080/folder", requestOptions);
+        const response = await fetch("http://localhost:8080/folder/?filtro=" + filter, requestOptions);
         if(response.ok){
             folders = await response.json();
         } else {
@@ -110,7 +110,7 @@ export const getFolderByName = async (folderName) => {
             method: 'GET',
             credentials: 'include'
         }
-        const response = await fetch("http://localhost:8080/folder/filtro/"+folderName, requestOptions);
+        const response = await fetch("http://localhost:8080/folder/?filtro="+folderName, requestOptions);
         if(response.ok){
             folder = await response.json();
         } else {
@@ -120,25 +120,5 @@ export const getFolderByName = async (folderName) => {
         console.error("Error: " + error);
     } finally {
         return folder;
-    }
-}
-
-export const getUserSnippets = async (folderId, tagId = null) => {
-    let snippets = [];
-    const requestOptions = {
-        method: 'GET',
-        credentials: 'include'
-    }
-    try{
-        const response = await fetch(`http://localhost:8080/folder/${folderId}/snippets` + (tagId? ("?tagId=" + tagId) : ""), requestOptions); //TODO: trocar a url da api para uma variavel global
-        if(response.ok){
-            snippets = await response.json();
-        } else {
-            throw new Error("Falha ao buscar snippets");
-        }
-    } catch (error) {
-        console.error(error);
-    } finally {
-        return snippets;
     }
 }

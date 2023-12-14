@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from '../../features/auth/userSlice'; 
 
-const Header = ({ openMenu, setOpenMenu }) => {
+const Header = ({ openMenu, setOpenMenu, handleSearch }) => {
   const [searchText, setSearchText] = useState("");
   const user = useSelector(selectUser);
 
@@ -36,15 +36,9 @@ const Header = ({ openMenu, setOpenMenu }) => {
     setSearchText(event.target.value);
   };
 
-  const handleSearch = () => {
-    // Perform the search action with the searchText
-    console.log("Performing search with text: " + searchText);
-  };
-
   const handleEnterKeyPress = (event) => {
     if (event.key === "Enter") {
-      // Perform the search action with the searchText
-      console.log("Performing search with text: " + searchText);
+      handleSearch(searchText);
     }
   };
 
@@ -60,7 +54,7 @@ const Header = ({ openMenu, setOpenMenu }) => {
             <LupinhaIcon
               src={lupinha}
               alt="Search"
-              onClick={handleSearch}
+              onClick={() => handleSearch(searchText)}
             />
             <InsideSearchBar
               type="text"
@@ -76,10 +70,10 @@ const Header = ({ openMenu, setOpenMenu }) => {
             <User />
             ) : (
               <FlexButtons>
-              <Link to="/sign-in" style={{ textDecoration: "none" }}>
+              <Link to="/entry" style={{ textDecoration: "none" }}>
                 <SignIn> Sign In </SignIn>
               </Link>
-              <Link to="/sign-up" style={{ textDecoration: "none" }}>
+              <Link to="/entry" style={{ textDecoration: "none" }}>
                 <SignUp> Sign Up </SignUp>
               </Link>
             </FlexButtons>

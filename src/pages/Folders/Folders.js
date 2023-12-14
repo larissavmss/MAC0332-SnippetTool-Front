@@ -25,9 +25,14 @@ const Folders = () => {
         }
     }
 
+    const handleSearch = async (filter) => {
+        const foldersFetched = await getAllFolders(filter);
+        setFolders(foldersFetched);
+    }
+
     return(
         <div>
-            <Header openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+            <Header openMenu={openMenu} setOpenMenu={setOpenMenu} handleSearch={handleSearch}/>
             <div className={`content ${openMenu ? 'content-menu-aberto' : ''}`}>
                 
                 <div className="titleAndAdd">

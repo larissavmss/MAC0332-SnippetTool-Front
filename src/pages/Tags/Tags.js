@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTags, createNewTag, editTag, deleteTag } from "../../services/tag";
+import { getTags, createNewTag } from "../../services/tag";
 import Header from "../../components/Header/Header";
 import "./Tags.css"
 import tagAdd from "../../images/tagAdd.png"
@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 const Tags = () => {
     
     const [openMenu, setOpenMenu] = useState(false);
-
     const [tags, setTags] = useState([]);
     const [tag, setTag] = useState({ name:'', color:null });
 
@@ -26,6 +25,11 @@ const Tags = () => {
         }
         fetchTags();
     }, [])
+
+    const handleSearch = async (filter) => {
+        const tagsFetched = await getTags(filter);
+        setTags(tagsFetched);
+    }
 
     const handleNewTag = async () => {
         if(tag.color != null){
@@ -57,7 +61,7 @@ const Tags = () => {
 
     return(
         <div>
-            <Header openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+            <Header openMenu={openMenu} setOpenMenu={setOpenMenu} handleSearch={handleSearch}/>
             <div className={`content ${openMenu ? 'content-menu-aberto' : ''}`}>
                 
                 <div className="titleAndAdd">

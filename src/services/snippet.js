@@ -88,12 +88,11 @@ export const associateTagToSnippet = async (snippetId, tagId) => {
     let associated = false;
     try {
         const requestOptions = {
-            method: "POST",
+            method: "PUT",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({"tagId": tagId}),
             credentials: 'include'
         }
-        const response = await fetch("http://localhost:8080/snippet/addTag/" + snippetId, requestOptions);
+        const response = await fetch(`http://localhost:8080/snippet/${snippetId}/addTag/${tagId}`, requestOptions);
         if(response.ok){
             associated = true;
         } else {
@@ -103,5 +102,66 @@ export const associateTagToSnippet = async (snippetId, tagId) => {
         console.error(error);
     } finally {
         return associated;
+    }
+}
+
+export const disassociateTagToSnippet = async (snippetId, tagId) => {
+    let disassociated = false;
+    try {
+        const requestOptions = {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            credentials: 'include'
+        }
+        const response = await fetch(`http://localhost:8080/snippet/${snippetId}/removeTag/${tagId}`, requestOptions);
+        if(response.ok){
+            disassociated = true;
+        } else {
+            throw new Error("Failed to disassociated tag to snippet");
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return disassociated;
+    }
+}
+
+export const getFolderSnippets = async (folderId, filter="") => {
+    let snippets = [];
+    const requestOptions = {
+        method: 'GET',
+        credentials: 'include'
+    }
+    try{
+        const response = await fetch(`http://localhost:8080/snippet/folder/${folderId}/?filtro=` + filter, requestOptions); //TODO: trocar a url da api para uma variavel global
+        if(response.ok){
+            snippets = await response.json();
+        } else {
+            throw new Error("Falha ao buscar snippets");
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return snippets;
+    }
+}
+
+export const getTagSnippets = async (tagId, filter="") => {
+    let snippets = [];
+    const requestOptions = {
+        method: 'GET',
+        credentials: 'include'
+    }
+    try{
+        const response = await fetch(`http://localhost:8080/snippet/tag/${tagId}/?filtro=` + filter, requestOptions); //TODO: trocar a url da api para uma variavel global
+        if(response.ok){
+            snippets = await response.json();
+        } else {
+            throw new Error("Falha ao buscar snippets");
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        return snippets;
     }
 }

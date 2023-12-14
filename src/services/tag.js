@@ -7,7 +7,7 @@ export const createNewTag = async (tag) => {
             credentials: 'include',
             body: JSON.stringify(tag)
         };
-        const response = fetch("http://localhost:8080/tag", requestOptions);
+        const response = await fetch("http://localhost:8080/tag", requestOptions);
         if(response.ok){
             tagCreated = true;
         } else {    
@@ -20,14 +20,14 @@ export const createNewTag = async (tag) => {
     }
 }
 
-export const getTags = async () => {
+export const getTags = async (filter="") => {
     let tags = [];
     try {
         const requestOptions = {
             method: 'GET',
             credentials: 'include'
         };
-        const response = await fetch("http://localhost:8080/tag", requestOptions);
+        const response = await fetch("http://localhost:8080/tag/?filtro=" + filter, requestOptions);
         if (response.ok){
             tags = await response.json();
         } else {
