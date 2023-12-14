@@ -49,7 +49,7 @@ const Login = () => {
     const handleClickSignUp = async () =>{
         if (action === "Login") {
             setAction("SignUp");
-        } else if (userName != '' && userPassword != '' && userEmail != '') {
+        } else if (userName !== '' && userPassword !== '' && userEmail !== '') {
             let userInfo = {
                 "username" : userName,
                 "password" : userPassword,
@@ -88,7 +88,7 @@ const Login = () => {
 
             let logged = await loginUser(loginInfo);
 
-            if(logged === null){
+            if(!logged){
                 window.alert("Erro ao fazer login");
             } else {
                 dispatch(login({username: userName}))
