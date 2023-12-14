@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/auth/userSlice";
 
-import { getUserSnippets } from "../../services/folder";
 import SnippetPopup from "../SnippetPopup/SnippetPopup";
 import emptySnippet from '../../utils/constants/emptySnippet';
 import { createSnippet, getSnippetById } from '../../services/snippet';
 import { getTags } from '../../services/tag';
 
-const SnippetsContainer = ({ folderId, snippetData, setSnippetData }) => {
+const SnippetsContainer = ({ id, getUserSnippets, snippetData, setSnippetData , tagPage=false, filter}) => {
     const [ userTags, setUserTags ] = useState([]);
     const [ snippets, setSnippets ] = useState([]);
     const [ snippetPopup, setSnippetPopup ] = useState(false);
@@ -19,11 +18,11 @@ const SnippetsContainer = ({ folderId, snippetData, setSnippetData }) => {
 
     useEffect(()=>{
         const fetchSnippetsData = async () =>   {
-            const snippetsByFolder = await getUserSnippets(folderId);
+            const snippetsByFolder = await getUserSnippets(id, filter);
             setSnippets(snippetsByFolder);
         }
         fetchSnippetsData();
-    }, [snippetPopup])
+    }, [snippetPopup, filter])
 
     useEffect(()=>{
         const fetchUserTags = async () =>   {
@@ -55,7 +54,7 @@ const SnippetsContainer = ({ folderId, snippetData, setSnippetData }) => {
     const handleCreateSnippet = () => {
         const createEmptySnippet = async () => {
             const snippetToCreate = emptySnippet;
-            snippetToCreate.folderId = folderId;
+            snippetToCreate.folderId = id;
             const snippet = await createSnippet(snippetToCreate);
             setSnippetData(snippet);
         }
@@ -65,7 +64,7 @@ const SnippetsContainer = ({ folderId, snippetData, setSnippetData }) => {
     
     return (
         <div>
-            <button className="inputCreator" onClick={handleCreateSnippet}>Criar novo snippet</button>
+            {tagPage? null :<button className="inputCreator" onClick={handleCreateSnippet}>Criar novo snippet</button>}
 
             <div className="snippetContainer">
 
